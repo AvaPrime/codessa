@@ -1,0 +1,142 @@
+{
+  "timestamp": "2025-07-14T11:19:28.817Z",
+  "request": {
+    "id": "request_1752491968806",
+    "task": {
+      "id": "task_reasoning_001",
+      "type": "cognitive_analysis",
+      "description": "Complex reasoning task requiring computational analysis",
+      "priority": "high",
+      "requiredCapabilities": [
+        "compute",
+        "reasoning"
+      ],
+      "estimatedComplexity": 25,
+      "estimatedDuration": 1200,
+      "dependencies": [],
+      "payload": {
+        "analysisType": "pattern_recognition",
+        "dataSize": "large",
+        "urgency": "high"
+      },
+      "createdAt": "2025-07-14T11:19:28.731Z",
+      "createdBy": "TaskScheduler"
+    },
+    "originAgent": "TaskScheduler",
+    "fallbackStrategy": "retry",
+    "constraints": {
+      "minTrustLevel": 0.8,
+      "maxWorkload": 80
+    },
+    "timestamp": "2025-07-14T11:19:28.806Z"
+  },
+  "response": {
+    "id": "delegation_1752491968807_0",
+    "requestId": "request_1752491968806",
+    "status": "accepted",
+    "assignedAgent": "agent_alpha",
+    "estimatedStartTime": "2025-07-14T11:19:28.814Z",
+    "estimatedCompletionTime": "2025-07-14T11:39:28.814Z",
+    "timestamp": "2025-07-14T11:19:28.814Z"
+  },
+  "analytics": {
+    "totalDelegations": 0,
+    "successRate": 0,
+    "agentUtilization": {},
+    "currentLoad": 0.45
+  },
+  "agents": [
+    {
+      "id": "agent_alpha",
+      "name": "AlphaBot",
+      "capabilities": [
+        "compute",
+        "reasoning",
+        "analysis"
+      ],
+      "currentWorkload": 40,
+      "maxCapacity": 100,
+      "successRate": 0.92,
+      "averageResponseTime": 120,
+      "specializationScore": {
+        "compute": 0.95,
+        "reasoning": 0.89,
+        "analysis": 0.78
+      },
+      "lastActiveAt": "2025-07-14T11:19:28.731Z",
+      "status": "active",
+      "trustLevel": 0.88
+    },
+    {
+      "id": "agent_beta",
+      "name": "BetaCore",
+      "capabilities": [
+        "analytics",
+        "storage",
+        "optimization"
+      ],
+      "currentWorkload": 65,
+      "maxCapacity": 100,
+      "successRate": 0.85,
+      "averageResponseTime": 160,
+      "specializationScore": {
+        "analytics": 0.91,
+        "storage": 0.94,
+        "optimization": 0.82
+      },
+      "lastActiveAt": "2025-07-14T11:19:28.731Z",
+      "status": "active",
+      "trustLevel": 0.91
+    },
+    {
+      "id": "agent_gamma",
+      "name": "GammaNet",
+      "capabilities": [
+        "network",
+        "communication",
+        "reasoning"
+      ],
+      "currentWorkload": 30,
+      "maxCapacity": 100,
+      "successRate": 0.87,
+      "averageResponseTime": 90,
+      "specializationScore": {
+        "network": 0.87,
+        "communication": 0.93,
+        "reasoning": 0.73
+      },
+      "lastActiveAt": "2025-07-14T11:19:28.731Z",
+      "status": "active",
+      "trustLevel": 0.85
+    },
+    {
+      "id": "agent_delta",
+      "name": "DeltaLogic",
+      "capabilities": [
+        "reasoning",
+        "compute",
+        "planning"
+      ],
+      "currentWorkload": 45,
+      "maxCapacity": 100,
+      "successRate": 0.94,
+      "averageResponseTime": 80,
+      "specializationScore": {
+        "reasoning": 0.96,
+        "compute": 0.88,
+        "planning": 0.92
+      },
+      "lastActiveAt": "2025-07-14T11:19:28.731Z",
+      "status": "active",
+      "trustLevel": 0.93
+    }
+  ],
+  "systemLoad": 0.45,
+  "summary": {
+    "delegationStatus": "accepted",
+    "assignedAgent": "agent_alpha",
+    "systemLoadAfter": "45.0%",
+    "totalRegisteredAgents": 4,
+    "eligibleAgents": 2
+  }
+}

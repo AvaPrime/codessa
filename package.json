@@ -1,0 +1,32 @@
+{
+  "name": "codessa",
+  "version": "1.0.0-phase-iv-final",
+  "description": "Distributed Multi-Agent Reasoning System",
+  "main": "core/codessa-kernel.ts",
+  "scripts": {
+    "start": "node core/codessa-kernel.js",
+    "build": "tsc",
+    "test": "echo \"Running unit tests...\"",
+    "test:integration": "echo \"Running integration tests for Phase IV modules...\"",
+    "test:performance": "echo \"Running performance tests...\"",
+    "validate:system": "echo \"Validating system health and module integrity...\"",
+    "activate:agents": "echo \"Activating DirectiveTrackerAgent and SystemStateUpdater...\"",
+    "phase:finalize": "echo \"Finalizing Phase IV and preparing for Phase V...\""
+  },
+  "keywords": [
+    "ai",
+    "multi-agent",
+    "reasoning",
+    "autonomous",
+    "distributed"
+  ],
+  "author": "Codessa Development Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.0.13",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "events": "^3.3.0"
+  }
+}

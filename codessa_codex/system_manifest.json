@@ -1,0 +1,53 @@
+{
+  "codessa_version": "1.0.0",
+  "system_id": "codessa_os_prime",
+  "initialized": "2025-07-14T08:06:00Z",
+  "status": "development",
+  "core_components": {
+    "archives": {
+      "raw_potential": "C:\\codessa\\archives\\raw_potential",
+      "processed": "C:\\codessa\\archives\\processed",
+      "assimilated": "C:\\codessa\\archives\\assimilated"
+    },
+    "codex": {
+      "manifests": "C:\\codessa\\codessa_codex\\manifests",
+      "projects": "C:\\codessa\\codessa_codex\\projects",
+      "agents": "C:\\codessa\\codessa_codex\\agents"
+    },
+    "tools": {
+      "inquisitor": "C:\\codessa\\tools\\inquisitor",
+      "analyzer": "C:\\codessa\\tools\\archive-scanner.ts",
+      "kernel": "C:\\codessa\\core\\kernel"
+    }
+  },
+  "registered_projects": {},
+  "active_agents": {},
+  "guilds": {
+    "Order of Memory": {
+      "domain": "Memory systems and databases",
+      "agents": []
+    },
+    "Guild of Reason": {
+      "domain": "Logic, reflection, self-awareness",
+      "agents": []
+    },
+    "Circle of Executors": {
+      "domain": "CLI, shell, task executors",
+      "agents": []
+    },
+    "Weavers of Code": {
+      "domain": "Devtools, plugins, codex creators",
+      "agents": []
+    },
+    "Scribes of Lore": {
+      "domain": "Mythos, docs, identity systems",
+      "agents": []
+    }
+  },
+  "processing_queue": [],
+  "integration_roadmap": {
+    "phase_1": "Archive initialization and tool setup",
+    "phase_2": "Project analysis and agent binding",
+    "phase_3": "Module extraction and integration"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "models": [
+    {
+      "name": "openrouter",
+      "endpoint": "https://openrouter.ai/api/v1",
+      "capabilities": ["reasoning", "analysis", "creative_writing", "code_generation"],
+      "preferred_agents": ["Ava Prime", "Auditor"],
+      "load": 0,
+      "api_key_env": "OPENROUTER_API_KEY",
+      "model_id": "anthropic/claude-3.5-sonnet"
+    },
+    {
+      "name": "ollama",
+      "endpoint": "http://localhost:11434/api/generate",
+      "capabilities": ["general_purpose", "fast_processing"],
+      "preferred_agents": ["Oracle", "Executor"],
+      "load": 0,
+      "model_id": "llama2"
+    },
+    {
+      "name": "mistral",
+      "endpoint": "https://api.mistral.ai/v1",
+      "capabilities": ["reflection", "system_analysis"],
+      "preferred_agents": ["Reflector"],
+      "load": 0,
+      "api_key_env": "MISTRAL_API_KEY",
+      "model_id": "mistral-large-latest"
+    },
+    {
+      "name": "claude",
+      "endpoint": "https://api.anthropic.com/v1",
+      "capabilities": ["task_execution", "detailed_analysis"],
+      "preferred_agents": ["Executor"],
+      "load": 0,
+      "api_key_env": "ANTHROPIC_API_KEY",
+      "model_id": "claude-3.5-sonnet-20241022"
+    }
+  ],
+  "routing_rules": [
+    {
+      "task_type": "directive_execution",
+      "models": ["openrouter", "claude"]
+    },
+    {
+      "task_type": "memory_query",
+      "models": ["ollama", "mistral"]
+    },
+    {
+      "task_type": "system_reflection",
+      "models": ["mistral", "claude"]
+    },
+    {
+      "task_type": "code_analysis",
+      "models": ["openrouter", "claude"]
+    },
+    {
+      "task_type": "general_processing",
+      "models": ["ollama", "openrouter"]
+    }
+  ],
+  "load_balancing": {
+    "strategy": "round_robin",
+    "max_concurrent_requests": 10,
+    "timeout_ms": 30000
+  },
+  "fallback": {
+    "enabled": true,
+    "default_model": "ollama",
+    "retry_attempts": 3
+  }
+}

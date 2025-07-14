@@ -1,0 +1,110 @@
+{
+  "timestamp": "2025-07-14T11:10:24.067Z",
+  "guildId": "GuildAlpha",
+  "agents": [
+    {
+      "id": "AgentA",
+      "capabilities": [
+        "compute",
+        "gpu"
+      ],
+      "successRate": 0.9,
+      "computeAvailable": 80
+    },
+    {
+      "id": "AgentB",
+      "capabilities": [
+        "network",
+        "bandwidth"
+      ],
+      "successRate": 0.8,
+      "computeAvailable": 60
+    },
+    {
+      "id": "AgentC",
+      "capabilities": [
+        "storage",
+        "ssd"
+      ],
+      "successRate": 0.85,
+      "computeAvailable": 70
+    },
+    {
+      "id": "AgentD",
+      "capabilities": [
+        "analysis",
+        "reasoning"
+      ],
+      "successRate": 0.94,
+      "computeAvailable": 90
+    }
+  ],
+  "auction": {
+    "auctionId": "auction_gpu_001",
+    "winner": "AgentD",
+    "winningBid": {
+      "id": "bid_AgentD",
+      "agentId": "AgentD",
+      "guildId": "GuildAlpha",
+      "resourceType": "GPU",
+      "amount": 5,
+      "bidValue": 95,
+      "capabilities": [
+        "analysis",
+        "reasoning"
+      ],
+      "successRate": 0.94,
+      "computeAvailable": 90,
+      "timestamp": "2025-07-14T11:10:24.061Z",
+      "score": 0.827
+    },
+    "totalBids": 4,
+    "timestamp": "2025-07-14T11:10:24.062Z"
+  },
+  "consensus": {
+    "proposalId": "proposal_gpu_policy",
+    "consensusReached": true,
+    "winningChoice": "Accept",
+    "votes": [
+      {
+        "proposalId": "proposal_gpu_policy",
+        "voterId": "AgentA",
+        "choice": "Accept",
+        "timestamp": "2025-07-14T11:10:24.065Z"
+      },
+      {
+        "proposalId": "proposal_gpu_policy",
+        "voterId": "AgentB",
+        "choice": "Accept",
+        "timestamp": "2025-07-14T11:10:24.065Z"
+      },
+      {
+        "proposalId": "proposal_gpu_policy",
+        "voterId": "AgentC",
+        "choice": "Accept",
+        "timestamp": "2025-07-14T11:10:24.065Z"
+      },
+      {
+        "proposalId": "proposal_gpu_policy",
+        "voterId": "AgentD",
+        "choice": "Reject",
+        "timestamp": "2025-07-14T11:10:24.066Z"
+      }
+    ],
+    "quorumMet": true,
+    "voteCounts": {
+      "Accept": 3,
+      "Reject": 1
+    },
+    "timestamp": "2025-07-14T11:10:24.066Z"
+  },
+  "summary": {
+    "auctionWinner": "AgentD",
+    "consensusReached": true,
+    "participationRate": 100,
+    "outcomes": {
+      "resourceAllocation": "SUCCESS",
+      "policyConsensus": "ACHIEVED"
+    }
+  }
+}

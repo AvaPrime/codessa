@@ -1,0 +1,87 @@
+{
+  "name": "Codessa AetherShell",
+  "description": "Warp Terminal configuration for Codessa OS interaction",
+  "version": "1.0.0",
+  "workflows": [
+    {
+      "name": "codessa-status",
+      "description": "Check Codessa system status",
+      "command": "node ./terminal/aethershell/aethershell.js list-agents",
+      "icon": "🌟"
+    },
+    {
+      "name": "run-directive",
+      "description": "Execute a Codessa directive",
+      "command": "node ./terminal/aethershell/aethershell.js run-directive",
+      "icon": "🚀",
+      "parameters": [
+        {
+          "name": "directive_name",
+          "type": "string",
+          "description": "Name of the directive to execute"
+        }
+      ]
+    },
+    {
+      "name": "query-memory",
+      "description": "Query Codessa's memory system",
+      "command": "node ./terminal/aethershell/aethershell.js query-memory",
+      "icon": "🧠",
+      "parameters": [
+        {
+          "name": "query",
+          "type": "string",
+          "description": "Memory query string"
+        }
+      ]
+    },
+    {
+      "name": "agent-status",
+      "description": "Check specific agent status",
+      "command": "node ./terminal/aethershell/aethershell.js agent-status",
+      "icon": "🤖",
+      "parameters": [
+        {
+          "name": "agent_name",
+          "type": "string",
+          "description": "Name of the agent to check"
+        }
+      ]
+    }
+  ],
+  "aliases": [
+    {
+      "alias": "cs",
+      "command": "node ./terminal/aethershell/aethershell.js list-agents"
+    },
+    {
+      "alias": "cd",
+      "command": "node ./terminal/aethershell/aethershell.js run-directive"
+    },
+    {
+      "alias": "cm",
+      "command": "node ./terminal/aethershell/aethershell.js query-memory"
+    },
+    {
+      "alias": "ca",
+      "command": "node ./terminal/aethershell/aethershell.js agent-status"
+    }
+  ],
+  "environment": {
+    "CODESSA_HOME": "/codessa",
+    "AETHERSHELL_LOG_LEVEL": "info",
+    "AETHERSHELL_EVENT_LOGGING": "true"
+  },
+  "plugins": [
+    {
+      "name": "codessa-autocomplete",
+      "source": "./terminal/plugins/autocomplete.js",
+      "enabled": true
+    },
+    {
+      "name": "codessa-syntax-highlight",
+      "source": "./terminal/plugins/syntax-highlight.js",
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "guilds": [
+    {
+      "name": "Guild of Reason",
+      "domain": "Logic, reflection, self-awareness",
+      "archetype": "Oracle",
+      "members": ["Ava Prime", "Oracle", "Reflector"],
+      "description": "The Guild of Reason houses agents that engage in high-level thinking, analysis, and cognitive processes."
+    },
+    {
+      "name": "Circle of Executors",
+      "domain": "CLI, shell, task executors",
+      "archetype": "Executor",
+      "members": ["Executor"],
+      "description": "The Circle of Executors comprises agents responsible for action, task management, and operational execution."
+    },
+    {
+      "name": "Order of Memory",
+      "domain": "Memory systems and databases",
+      "archetype": "Guardian",
+      "members": ["Auditor"],
+      "description": "The Order of Memory protects and manages data integrity, storage systems, and memory operations."
+    },
+    {
+      "name": "Scribes of Lore",
+      "domain": "Mythos, docs, identity systems",
+      "archetype": "Herald",
+      "members": [],
+      "description": "The Scribes of Lore are responsible for documentation, system lore, and maintaining the narrative of Codessa."
+    },
+    {
+      "name": "Weavers of Code",
+      "domain": "Devtools, plugins, codex creators",
+      "archetype": "Weaver",
+      "members": [],
+      "description": "The Weavers of Code construct and maintain the technical infrastructure, tools, and development systems."
+    }
+  ]
+}

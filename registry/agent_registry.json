@@ -1,0 +1,49 @@
+{
+  "agents": [
+    {
+      "name": "Ava Prime",
+      "archetype": "Sovereign",
+      "guild": "Guild of Reason",
+      "capabilities": ["directive_execution", "reasoning", "flow_orchestration"],
+      "memory_binding": "chroma_memory",
+      "model_preference": "openrouter",
+      "description": "Central reasoning and goal-setting intelligence of Codessa OS."
+    },
+    {
+      "name": "Oracle",
+      "archetype": "Oracle",
+      "guild": "Guild of Reason",
+      "capabilities": ["insight_generation", "prediction"],
+      "memory_binding": "oracle_memory",
+      "model_preference": "ollama",
+      "description": "Provides insights and predictions based on data analysis."
+    },
+    {
+      "name": "Reflector",
+      "archetype": "Oracle",
+      "guild": "Guild of Reason",
+      "capabilities": ["system_reflection", "log_analysis"],
+      "memory_binding": "reflection_logs",
+      "model_preference": "mistral",
+      "description": "Analyzes system logs and reflects on performance."
+    },
+    {
+      "name": "Executor",
+      "archetype": "Executor",
+      "guild": "Circle of Executors",
+      "capabilities": ["task_execution", "command_handling"],
+      "memory_binding": "execution_trace",
+      "model_preference": "claude",
+      "description": "Executes commands and handles task distribution across agents."
+    },
+    {
+      "name": "Auditor",
+      "archetype": "Guardian",
+      "guild": "Order of Memory",
+      "capabilities": ["system_validation", "integrity_check"],
+      "memory_binding": "audit_records",
+      "model_preference": "openrouter",
+      "description": "Validates system components and monitors integrity."
+    }
+  ]
+}
