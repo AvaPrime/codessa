@@ -1,15 +1,36 @@
+import { EventEmitter } from 'events';
 import { Task } from '../models/taskTypes';
-import { ReflectorAgent } from '../../agent_registry';
-import { Scheduler } from '../scheduler/taskQueue';
 
-class CognitionLoop {
-  
-  private reflector: ReflectorAgent;
-  private scheduler: Scheduler;
+export class CognitionLoop extends EventEmitter {
+  private initialized: boolean = false;
 
-  constructor(reflector: ReflectorAgent, scheduler: Scheduler) {
-    this.reflector = reflector;
-    this.scheduler = scheduler;
+  constructor() {
+    super();
+  }
+
+  async initialize(): Promise<void> {
+    console.log('🧠 Initializing Cognition Loop...');
+    this.initialized = true;
+    console.log('✅ Cognition Loop initialized');
+  }
+
+  async processTaskCompletion(task: Task): Promise<void> {
+    if (!this.initialized) {
+      throw new Error('Cognition Loop not initialized');
+    }
+
+    console.log(`💡 Processing task completion: ${task.id}`);
+    this.analyzeCompletedTasks([task]);
+    this.emit('insight.generated', { taskId: task.id, insight: 'Task completed successfully' });
+  }
+
+  async processTaskFailure(task: Task, error: Error): Promise<void> {
+    if (!this.initialized) {
+      throw new Error('Cognition Loop not initialized');
+    }
+
+    console.error(`🔍 Processing task failure: ${task.id} - ${error.message}`);
+    this.emit('insight.generated', { taskId: task.id, insight: 'Task failed, requires investigation', error: error.message });
   }
 
   analyzeCompletedTasks(tasks: Task[]): void {
@@ -24,7 +45,10 @@ class CognitionLoop {
 
   private calculateDuration(task: Task): number {
     // Calculate how long the task took to complete
-    return task.endTime - task.startTime;
+    if (task.completedAt && task.startedAt) {
+      return task.completedAt.getTime() - task.startedAt.getTime();
+    }
+    return task.actualDuration || 0;
   }
 
   private evaluateAccuracy(task: Task): number {
@@ -44,5 +68,3 @@ class CognitionLoop {
   }
 
 }
-
-export { CognitionLoop };

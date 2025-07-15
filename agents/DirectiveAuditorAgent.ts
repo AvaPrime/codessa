@@ -1,12 +1,13 @@
 // DirectiveAuditorAgent.ts
 // Agent responsible for auditing directives within Codessa
 
-import { DirectiveRegistry } from '../registry/';
+import { DirectiveRegistry } from '../registry/DirectiveRegistry';
 import { generateAuditReport, validateExecution } from '../tools/auditTools';
 
 class DirectiveAuditorAgent {
   async auditDirectives(): Promise<void> {
-    const directives = await DirectiveRegistry.getAll();
+    const registry = new DirectiveRegistry();
+    const directives = registry.getAllDirectives();
     for (const directive of directives) {
       const isValid = await this.validateDirective(directive);
       if (!isValid) {

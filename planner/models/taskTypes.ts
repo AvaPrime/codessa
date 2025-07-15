@@ -322,34 +322,4 @@ export interface LearningInsight {
   appliedAt?: Date;
 }
 
-// Export all types for external consumption
-export type {
-  Goal,
-  GoalConstraint,
-  Task,
-  TaskParameters,
-  TaskContext,
-  TaskResult,
-  TaskMetrics,
-  TaskFeedback,
-  TaskPlan,
-  DependencyGraph,
-  DependencyNode,
-  DependencyEdge,
-  ExecutionStrategy,
-  ResourceAllocationStrategy,
-  FailureHandlingStrategy,
-  EscalationRule,
-  OptimizationStrategy,
-  ContingencyPlan,
-  ContingencyTrigger,
-  ContingencyAction,
-  TaskQueue,
-  QueuedTask,
-  QueueStrategy,
-  QueueMetrics,
-  TaskPattern,
-  LearningInsight,
-  ResourceRequirement,
-  RecurrenceSchedule
-};
+// All types are already exported above via their interface declarations

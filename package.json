@@ -6,12 +6,20 @@
   "scripts": {
     "start": "node core/codessa-kernel.js",
     "build": "tsc",
-    "test": "echo \"Running unit tests...\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "test:integration": "echo \"Running integration tests for Phase IV modules...\"",
     "test:performance": "echo \"Running performance tests...\"",
     "validate:system": "echo \"Validating system health and module integrity...\"",
     "activate:agents": "echo \"Activating DirectiveTrackerAgent and SystemStateUpdater...\"",
-    "phase:finalize": "echo \"Finalizing Phase IV and preparing for Phase V...\""
+    "phase:finalize": "echo \"Finalizing Phase IV and preparing for Phase V...\"",
+    "api-manager": "ts-node src/main.ts",
+    "prompt": "ts-node src/cli/promptCli.ts",
+    "orchestration:demo": "ts-node src/demos/demoOrchestration.ts",
+    "orchestration:prompt": "ts-node src/demos/demoOrchestration.ts",
+    "codexforge": "ts-node src/shell/codexForge.ts",
+    "shell": "ts-node src/shell/codexForge.ts"
   },
   "keywords": [
     "ai",
@@ -23,10 +31,24 @@
   "author": "Codessa Development Team",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@types/node": "^24.0.13",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "events": "^3.3.0"
+    "@google-cloud/aiplatform": "^4.3.0",
+    "@google-cloud/secret-manager": "^6.1.0",
+    "@google-cloud/storage": "^7.0.0",
+    "@google-cloud/vertexai": "^1.10.0",
+    "@types/ws": "^8.18.1",
+    "axios": "^1.6.0",
+    "dotenv": "^16.0.0",
+    "events": "^3.3.0",
+    "google-auth-library": "^9.0.0",
+    "winston": "^3.8.0",
+    "ws": "^8.18.3"
   }
 }

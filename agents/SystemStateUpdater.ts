@@ -1,8 +1,14 @@
 // src/agents/SystemStateUpdater.ts
 import { collectSystemStats } from '../tools/diagnostics';
-import { writeManifest } from '../tools/manifestWriter';
+import { writeManifest, createManifest } from '../tools/manifestWriter';
 
 export const SystemStateUpdater = async () => {
-  const state = await collectSystemStats();
-  await writeManifest(state, './system_manifest.json');
+  const stats = collectSystemStats();
+  const manifest = createManifest(
+    '1.0.0',
+    'active',
+    { systemStats: stats },
+    { updatedBy: 'SystemStateUpdater' }
+  );
+  writeManifest(manifest);
 };

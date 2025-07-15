@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "codessa-core",
+  "private_key_id": "d3f365e578fd7f249a48bbc34b0a10bef2cab91e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCFQjDW33YRb2OW\n9FkZizrTllvOjuJdMB+7hPedeH1IBEEY6um1LvYSxx2wWgTsM8vbaRHyeZHVBV7e\nPr53FPXpX5BVCdw/3/cyS0AhJ0J8DAZBUwD4Mg22txGnxRZOKzzhD0D7sHDDxJZd\nhDSz8xysfUNc22p4exFl+xXbPAFk7/2Hqh/2KlEZOVfzaEETfQp7quCy6Shd4oTm\nTOS2nQgXoXY4oxj4oY/GJYRtsAPEEFQejKOEU9CHGU4ljtkK5W51i/Ye2tghmVTM\nQZVuYxRjPk2VpVli0dOLG9Fy3zo82OrMd/vGEmMdb71kHwGulEVrVdBfDGykosTE\n0wr4jbybAgMBAAECggEAL5+rr6cV3X5HA7RYwWnCQMrsDYKAAJjJxmzrR3I/p8Sp\ndRvDITbix2w0vok1WCrcsJG40cTDqvMr59ZZoFoz1k8KWHHZLlS+1dER3qdWudlc\nRO1Cm/DbeNCtNR2Y7p/CNpaKfUidzEEOEebFJQh912E++UkLIHqvCZi1w2+K+gTM\nuxTx/Xu7IO21KcPdluBH5DziTALIPwd3WjBTR+rafmHO2AKGB+wAAbteBy5E8sS/\noq9JInjU+10FpocmhsWl4oG6A4l01rGwLTBvzs7KwCVpKW8NIgNYKkCIiA1nvRi9\nHOpBwMjb+W+Hqmb42tecJhRN6d3LMJ/Bm46QFOVmXQKBgQC6gBapjtUQUQS1zIsL\nKRgCtJzq2LCP6g1ISvXYwbKZTnRS9AYmGJAJa4kZr4zzXEUbew6fTAPoM/xi7iLD\noRSGy8DDmDoluds57jOpMSIZYPjJFd6r2GbcqRwy18mCOXhsQizDfnOZgxpq1T01\n1KpmV1PdjGTkwCA/3rnYREaqtwKBgQC26uYe7jxXkdMUvPTQ2PfNfKqh55wP9YcM\no2NcHZih9UgT+/ZDiks/YzbiWFo0hg0+6GWKWggt1pBpb+OxApFxYZUnMwucfoEZ\nkAXg1iNN+B8ErxRQWYcRu0ryZ/nrmRC2hzJRtVBVbF3YzX5mfiI3YAhaiXgvtZDG\nY4Oqu95pPQKBgQClAa8LVdQtG4GPV+mtdi5INoSfRBjzO6GE1M2vebEK8t74he7q\nxdCqhPpIP4n1xy1dowLM7fSG/XfQD+GyNFJ08NEcPRM1TbspBhevGkmRKrrzLuZU\nJKLdmMHaOhGPpkllfycb0EV3DQfSfdgqSH57DcilvBGIUnQ2DllffwkHAQKBgCJQ\nMlb/DebHfjdXsv0yllm/1yqEDiyYPHtMcykmjClln93P2ESXPsJnVDZlqJZNx1JT\nuiiX9wzSQUjmKmpcNvhz+8zcsILs4D7xW4jv4rOPphH03fSstr/GyKpsgt+FWTNE\nbVYSkz1TFM/EzL9hTf3hT+/b9eXNQ5lTtbFjiLdpAoGAK93ISQlsGW/g4bUpnTBM\ntG/9jqO/FZKeHoXERyxDXN45tuhpvxjwsSjfDoGpE/eB0ql5nRCwgYlgHq8Pm4aM\nfEB25aAORrbvGxAQZKBBeqIzQZ4abJs3PgG/DQY2um6XflBrzUoOicgpDzwSI7K4\nIkIbV1qNt3X3HVFi4HPMQzc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "codessa-core-agent@codessa-core.iam.gserviceaccount.com",
+  "client_id": "102996935667895037078",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/codessa-core-agent%40codessa-core.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
