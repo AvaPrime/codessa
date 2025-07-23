@@ -1,0 +1,282 @@
+{
+  "metadata": {
+    "generatedAt": "2025-07-23T10:26:36.000Z",
+    "initiatedBy": "codessa-audit-pipeline-phase-v",
+    "framework": "Codessa Audit System v1.0",
+    "healthScore": 47,
+    "testCoverage": 30.47,
+    "auditVersion": "phase-iv-final",
+    "reportPath": ".refactor-audit/CODEBASE_REFACTORING_REPORT.md"
+  },
+  "projectStructure": {
+    "totalFiles": 37,
+    "analyzedFiles": 3,
+    "codebaseType": "typescript-node-monorepo",
+    "architecture": "agent-orchestration-framework",
+    "primaryDirectories": [
+      "src/agents",
+      "src/orchestration", 
+      "src/shell",
+      "src/managers",
+      "src/mirror",
+      "shared/src"
+    ]
+  },
+  "eslint": {
+    "totalErrors": 1,
+    "totalWarnings": 2,
+    "totalIssues": 3,
+    "autofixCommand": "npm run lint:fix",
+    "detailedIssues": [
+      {
+        "file": "C:\\codessa\\src\\main.ts",
+        "errors": 1,
+        "warnings": 1,
+        "status": "Needs Refactor",
+        "specificIssues": [
+          {
+            "ruleId": "@typescript-eslint/no-unused-vars",
+            "severity": "error",
+            "message": "'unusedVariable' is defined but never used.",
+            "line": 10,
+            "column": 7
+          },
+          {
+            "ruleId": "prefer-const",
+            "severity": "warning", 
+            "message": "'data' is never reassigned. Use 'const' instead of 'let'.",
+            "line": 15,
+            "column": 5
+          }
+        ]
+      },
+      {
+        "file": "C:\\codessa\\src\\utils\\logger.ts",
+        "errors": 0,
+        "warnings": 1,
+        "status": "Warning",
+        "specificIssues": [
+          {
+            "ruleId": "no-console",
+            "severity": "warning",
+            "message": "Unexpected console statement.",
+            "line": 25,
+            "column": 3
+          }
+        ]
+      },
+      {
+        "file": "C:\\codessa\\src\\config\\settings.ts",
+        "errors": 0,
+        "warnings": 0,
+        "status": "Compliant"
+      }
+    ],
+    "manualReview": [
+      {
+        "file": "src/main.ts",
+        "issue": "@typescript-eslint/no-unused-vars",
+        "line": 10,
+        "priority": "high",
+        "action": "Remove unused variable 'unusedVariable' or implement its usage"
+      }
+    ]
+  },
+  "testCoverage": {
+    "threshold": 80,
+    "current": 30.47,
+    "branchCoverage": 19.0,
+    "totalFiles": 37,
+    "filesWithGaps": 32,
+    "totalUncoveredLines": 1510,
+    "totalUncoveredBranches": 486,
+    "criticalFiles": [
+      {
+        "file": "C:\\codessa\\src\\meta\\metaCognition.ts",
+        "coverage": 0,
+        "uncoveredLines": 351,
+        "uncoveredBranches": 111,
+        "priority": "critical",
+        "reason": "Core metacognition engine - requires comprehensive testing"
+      },
+      {
+        "file": "C:\\codessa\\src\\shell\\codexForge.ts", 
+        "coverage": 0,
+        "uncoveredLines": 207,
+        "uncoveredBranches": 81,
+        "priority": "high",
+        "reason": "Main shell interface - critical for user interactions"
+      },
+      {
+        "file": "C:\\codessa\\src\\demos\\demoOrchestration.ts",
+        "coverage": 0,
+        "uncoveredLines": 126,
+        "uncoveredBranches": 38,
+        "priority": "medium",
+        "reason": "Demo code - less critical but shows usage patterns"
+      }
+    ],
+    "focusFiles": [
+      {
+        "file": "C:\\codessa\\shared\\src\\retry.ts",
+        "coverage": 0,
+        "uncoveredLines": 29,
+        "uncoveredBranches": 18,
+        "priority": "high",
+        "reason": "Shared utility - used across multiple modules"
+      },
+      {
+        "file": "C:\\codessa\\src\\agents\\ApiManagerAgent.ts",
+        "coverage": 0,
+        "uncoveredLines": 71,
+        "uncoveredBranches": 6,
+        "priority": "high",
+        "reason": "Core agent - critical for API management"
+      },
+      {
+        "file": "C:\\codessa\\src\\managers\\apiManager.ts",
+        "coverage": 0,
+        "uncoveredLines": 71,
+        "uncoveredBranches": 32,
+        "priority": "high",
+        "reason": "API management core - needs robust testing"
+      }
+    ]
+  },
+  "dependencies": {
+    "totalLibraries": 55,
+    "versionMismatches": 9,
+    "uniqueToCodessa": 38,
+    "uniqueToEchoForge": 7,
+    "matchingVersions": 1,
+    "criticalMismatches": [
+      {
+        "library": "typescript",
+        "codessaVersion": "^5.8.3",
+        "echoforgeVersion": "^5.4.0",
+        "impact": "high",
+        "recommendation": "Standardize on typescript ^5.8.3 across both projects"
+      },
+      {
+        "library": "jest",
+        "codessaVersion": "^29.7.0", 
+        "echoforgeVersion": "^30.0.5",
+        "impact": "medium",
+        "recommendation": "Upgrade Codessa to jest ^30.0.5 for consistency"
+      },
+      {
+        "library": "husky",
+        "codessaVersion": "^8.0.0",
+        "echoforgeVersion": "^9.1.7",
+        "impact": "low",
+        "recommendation": "Upgrade Codessa husky to ^9.1.7"
+      }
+    ],
+    "recommendations": [
+      "Standardize TypeScript versions across both codebases",
+      "Upgrade testing frameworks to latest stable versions",
+      "Consider adopting EchoForge's vitest setup for consistency"
+    ]
+  },
+  "actions": [
+    {
+      "id": "eslint-autofix",
+      "type": "automated",
+      "priority": "high",
+      "command": "npm run lint:fix",
+      "description": "Auto-fix ESLint issues where possible",
+      "estimatedTime": "2 minutes"
+    },
+    {
+      "id": "eslint-manual-fix",
+      "type": "manual",
+      "priority": "critical",
+      "file": "src/main.ts",
+      "line": 10,
+      "description": "Remove unused variable 'unusedVariable' in main.ts",
+      "estimatedTime": "5 minutes"
+    },
+    {
+      "id": "test-metacognition",
+      "type": "development",
+      "priority": "critical",
+      "file": "src/meta/metaCognition.ts",
+      "description": "Write comprehensive unit tests for metacognition engine",
+      "estimatedTime": "2-3 hours",
+      "targetCoverage": "80%"
+    },
+    {
+      "id": "test-codexforge",
+      "type": "development", 
+      "priority": "high",
+      "file": "src/shell/codexForge.ts",
+      "description": "Write unit and integration tests for shell interface",
+      "estimatedTime": "1-2 hours",
+      "targetCoverage": "75%"
+    },
+    {
+      "id": "test-shared-utils",
+      "type": "development",
+      "priority": "high",
+      "files": ["shared/src/retry.ts", "shared/src/logger.ts"],
+      "description": "Add tests for shared utility functions",
+      "estimatedTime": "1 hour",
+      "targetCoverage": "90%"
+    },
+    {
+      "id": "dependency-alignment",
+      "type": "maintenance",
+      "priority": "medium",
+      "description": "Align dependency versions between Codessa and EchoForge",
+      "estimatedTime": "30 minutes"
+    },
+    {
+      "id": "audit-rerun",
+      "type": "validation",
+      "priority": "medium",
+      "command": "npm run audit:refactor",
+      "description": "Re-run audit pipeline to validate improvements",
+      "estimatedTime": "5 minutes"
+    },
+    {
+      "id": "ci-gates",
+      "type": "infrastructure",
+      "priority": "low",
+      "description": "Update CI/CD pipeline to enforce lint and coverage gates",
+      "estimatedTime": "20 minutes"
+    }
+  ],
+  "nextSteps": {
+    "immediate": [
+      "Fix critical ESLint error in src/main.ts",
+      "Run npm run lint:fix for automated fixes",
+      "Begin writing tests for metaCognition.ts"
+    ],
+    "shortTerm": [
+      "Achieve 50%+ test coverage on critical files",
+      "Align dependency versions across projects", 
+      "Set up basic CI/CD gates"
+    ],
+    "longTerm": [
+      "Reach 80% overall test coverage",
+      "Implement comprehensive integration tests",
+      "Establish automated refactoring workflows"
+    ]
+  },
+  "refactorCoordinatorInput": {
+    "mode": "progressive",
+    "strategy": "test-driven-refactoring",
+    "priorities": ["critical-errors", "core-functionality", "shared-utilities", "integration-points"],
+    "constraints": {
+      "maxConcurrentTasks": 3,
+      "requireTestsBeforeRefactor": true,
+      "maintainBackwardCompatibility": true
+    },
+    "successCriteria": {
+      "healthScore": ">= 80",
+      "testCoverage": ">= 80%",
+      "eslintErrors": 0,
+      "criticalPathsCovered": "100%"
+    }
+  }
+}
