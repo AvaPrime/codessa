@@ -18,8 +18,10 @@ pids
 *.seed
 *.pid.lock
 
-# Coverage directory used by tools like istanbul
+# Coverage directories used by tools like istanbul
 coverage/
+coverage-baseline/
+coverage-new/
 
 # Environment variables
 .env
@@ -66,8 +68,11 @@ secrets/
 
 # Test artifacts
 test-results/
-coverage/
 
 # Codessa specific
 codessa_codex/logs/runtime/*.log
 codessa_codex/logs/*.log
+
+# Refactor audit artifacts (except latest summary files)
+.refactor-audit/artifacts/**
+!.refactor-audit/artifacts/latest/summary*.json

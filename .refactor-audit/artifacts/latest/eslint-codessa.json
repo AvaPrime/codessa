@@ -1,0 +1,37 @@
+[
+  {
+    "filePath": "C:\\codessa\\src\\main.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'unusedVariable' is defined but never used.",
+        "line": 10,
+        "column": 7
+      },
+      {
+        "ruleId": "prefer-const",
+        "severity": 1,
+        "message": "'data' is never reassigned. Use 'const' instead of 'let'.",
+        "line": 15,
+        "column": 5
+      }
+    ]
+  },
+  {
+    "filePath": "C:\\codessa\\src\\utils\\logger.ts",
+    "messages": [
+      {
+        "ruleId": "no-console",
+        "severity": 1,
+        "message": "Unexpected console statement.",
+        "line": 25,
+        "column": 3
+      }
+    ]
+  },
+  {
+    "filePath": "C:\\codessa\\src\\config\\settings.ts",
+    "messages": []
+  }
+]

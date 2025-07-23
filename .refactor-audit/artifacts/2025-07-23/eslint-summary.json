@@ -1,0 +1,26 @@
+{
+  "totalErrors": 1,
+  "totalWarnings": 2,
+  "files": [
+    "C:\\codessa\\src\\main.ts",
+    "C:\\codessa\\src\\utils\\logger.ts",
+    "C:\\codessa\\src\\config\\settings.ts"
+  ],
+  "summary": {
+    "C:\\codessa\\src\\main.ts": {
+      "errors": 1,
+      "warnings": 1,
+      "status": "Needs Refactor"
+    },
+    "C:\\codessa\\src\\utils\\logger.ts": {
+      "errors": 0,
+      "warnings": 1,
+      "status": "Warning"
+    },
+    "C:\\codessa\\src\\config\\settings.ts": {
+      "errors": 0,
+      "warnings": 0,
+      "status": "Compliant"
+    }
+  }
+}
