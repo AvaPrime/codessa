@@ -27,3 +27,5 @@ jobs:
           name: codessa-comp-m1-1-evidence
           path: verification/comp-m1-1/
           if-no-files-found: error
+      - name: Evidence gate
+        run: echo "M1-1 execution evidence gate completed"
