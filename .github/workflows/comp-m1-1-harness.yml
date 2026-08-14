@@ -18,6 +18,8 @@ jobs:
       - run: npm ci --ignore-scripts
       - name: Execute M1-1 reference kernel harness
         run: TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' npx ts-node tools/competitive/verify-m1-1.ts
+      - name: Materialize artifact hash
+        run: sha256sum verification/comp-m1-1/m1-1-execution.json > verification/comp-m1-1/m1-1-execution.json.sha256
       - name: Validate execution artifact hash
         run: sha256sum -c verification/comp-m1-1/m1-1-execution.json.sha256
       - name: Upload M1-1 evidence bundle
