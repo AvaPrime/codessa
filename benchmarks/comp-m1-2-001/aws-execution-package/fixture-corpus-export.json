@@ -1,0 +1,22 @@
+{
+  "package_id": "CODESSA-COMP-M1-2-001-EXEC",
+  "package_version": "v0.1",
+  "source_benchmark": "CODESSA-COMP-M1-1",
+  "source_manifest": "benchmarks/comp-m1-1/fixtures.json",
+  "source_manifest_sha256": "56cb1d0562ee6aa5aeec4f860fa1c0ade653aed3dbda47f0c78aaa7930c617f3",
+  "canonicalization_profile": "C14N-M1-1-v0.1:UTF8|sorted-object-keys|preserve-array-order|UTC-timestamps|null-distinct-from-absent|stable-id-regex|sha256-domain-separated|version-bound|non-circular-provenance",
+  "hash_algorithm": "sha256",
+  "fixtures": [
+    {"fixture_id":"COMP-M1-1-FX-0001","expected_decision":"ACCEPT_CANONICAL","expected_failure_code":"NONE","target_invariants":["INV-AUTH-01","INV-EVID-01","INV-CAUSAL-01","INV-PROV-01"],"provider_variants":["provider-a"]},
+    {"fixture_id":"COMP-M1-1-FX-0002","expected_decision":"REJECT_NON_CANONICAL","expected_failure_code":"EPISTEMIC_UNSUPPORTED","target_invariants":["INV-EPIST-01"],"provider_variants":["provider-a"]},
+    {"fixture_id":"COMP-M1-1-FX-0003","expected_decision":"REJECT_AUTHORITY_BYPASS","expected_failure_code":"AUTHORITY_BYPASS","target_invariants":["INV-AUTH-01"],"provider_variants":["provider-a"]},
+    {"fixture_id":"COMP-M1-1-FX-0004","expected_decision":"REJECT_NON_CANONICAL","expected_failure_code":"EVIDENCE_UNREGISTERED","target_invariants":["INV-EVID-01"],"provider_variants":["provider-a"]},
+    {"fixture_id":"COMP-M1-1-FX-0005","expected_decision":"REJECT_PROVENANCE_INCOMPLETE","expected_failure_code":"PROVENANCE_INCOMPLETE","target_invariants":["INV-PROV-01"],"provider_variants":["provider-a"]},
+    {"fixture_id":"COMP-M1-1-FX-0006","expected_decision":"ACCEPT_CANONICAL","expected_failure_code":"NONE","target_invariants":["INV-CAUSAL-01"],"provider_variants":["provider-a"]},
+    {"fixture_id":"COMP-M1-1-FX-0007","expected_decision":"REJECT_NON_CANONICAL","expected_failure_code":"EVIDENCE_INVALIDATED","target_invariants":["INV-EVID-01","INV-CAUSAL-01"],"provider_variants":["provider-a"]},
+    {"fixture_id":"COMP-M1-1-FX-0008","expected_decision":"ACCEPT_CANONICAL","expected_failure_code":"NONE","target_invariants":["INV-MOD-01"],"provider_variants":["provider-a","provider-b"]},
+    {"fixture_id":"COMP-M1-1-FX-0009","expected_decision":"REJECT_AUTHORITY_BYPASS","expected_failure_code":"AUTHORITY_BYPASS","target_invariants":["INV-GOV-01","INV-AUTH-01"],"provider_variants":["provider-a"]},
+    {"fixture_id":"COMP-M1-1-FX-0010","expected_decision":"ERROR_MALFORMED_INPUT","expected_failure_code":"MALFORMED_INPUT","target_invariants":["INV-GOV-01"],"provider_variants":["provider-a"]}
+  ],
+  "rule": "Do not alter expected decisions or fixtures to accommodate AWS behavior. The frozen M1-1 manifest is the oracle baseline."
+}
