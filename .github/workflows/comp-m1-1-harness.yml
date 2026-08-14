@@ -1,0 +1,28 @@
+name: CODESSA COMP M1-1 Harness
+
+on:
+  push:
+    branches:
+      - codessa-comp-m1-1-harness
+  workflow_dispatch:
+
+jobs:
+  reference-harness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Execute M1-1 reference kernel harness
+        run: TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' npx ts-node tools/competitive/verify-m1-1.ts
+      - name: Validate execution artifact hash
+        run: sha256sum -c verification/comp-m1-1/m1-1-execution.json.sha256
+      - name: Upload M1-1 evidence bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: codessa-comp-m1-1-evidence
+          path: verification/comp-m1-1/
+          if-no-files-found: error
