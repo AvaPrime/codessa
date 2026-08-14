@@ -14,8 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci --ignore-scripts
+      - run: npm install --no-save ts-node typescript @types/node
       - name: Execute M1-1 reference kernel harness
         run: TS_NODE_COMPILER_OPTIONS='{"module":"commonjs"}' npx ts-node tools/competitive/verify-m1-1.ts
       - name: Materialize artifact hash
