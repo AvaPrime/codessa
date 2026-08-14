@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "codessa-comp-m1-2-001-result-record-v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["benchmark_id","execution_id","fixture_id","invariant_id","expected_decision","observed_decision","match_status","failure_code","authority_boundary","canonical_state_writer","evidence_admission_result","provenance_result","replay_result","provider_substitution_result","bypass_result","input_hash","decision_hash","provenance_hash","artifact_refs"],
+  "properties": {
+    "benchmark_id": {"const":"CODESSA-COMP-M1-2-001"},
+    "execution_id": {"type":"string","pattern":"^M1-2-001-EXEC-[A-Za-z0-9._-]+$"},
+    "fixture_id": {"type":"string","pattern":"^COMP-M1-1-FX-\\d{4}$"},
+    "invariant_id": {"type":"string","enum":["INV-AUTH-01","INV-EVID-01","INV-EPIST-01","INV-CAUSAL-01","INV-PROV-01","INV-MOD-01","INV-GOV-01"]},
+    "expected_decision": {"type":"string","enum":["ACCEPT_CANONICAL","REJECT_NON_CANONICAL","DEFER_PENDING_EVIDENCE","REJECT_AUTHORITY_BYPASS","REJECT_PROVENANCE_INCOMPLETE","REJECT_REPLAY_FAILURE","ACCEPT_GOVERNED_INVALIDATION","ERROR_MALFORMED_INPUT"]},
+    "observed_decision": {"type":"string"},
+    "match_status": {"enum":["MATCH","MISMATCH","UNRESOLVED","NOT_EXECUTED"]},
+    "failure_code": {"enum":["NONE","AUTHORITY_BYPASS","EVIDENCE_MISSING","EVIDENCE_UNREGISTERED","EVIDENCE_INVALIDATED","EPISTEMIC_UNSUPPORTED","PROVENANCE_INCOMPLETE","REPLAY_DIVERGENCE","EXTENSION_BYPASS","MALFORMED_INPUT","CONFLICT_UNRESOLVED"]},
+    "authority_boundary": {"type":"string"},
+    "canonical_state_writer": {"type":"string"},
+    "evidence_admission_result": {"type":"string"},
+    "provenance_result": {"type":"string"},
+    "replay_result": {"type":"string"},
+    "provider_substitution_result": {"type":"string"},
+    "bypass_result": {"type":"string"},
+    "input_hash": {"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "decision_hash": {"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "provenance_hash": {"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "artifact_refs": {"type":"array","items":{"type":"string"},"minItems":1}
+  }
+}
