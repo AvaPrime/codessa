@@ -1,0 +1,32 @@
+name: Public Readiness
+
+on:
+  push:
+    branches: [refactor, 'release/**']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate shell syntax
+        run: |
+          bash -n scripts/conformance/verify-stage-m1.sh
+          bash -n scripts/conformance/invoke-smoke-test.sh
+          bash -n scripts/conformance/evaluate-stage-m1.sh
+      - name: Validate required public-boundary files
+        run: |
+          test -f README.md
+          test -f SECURITY.md
+          test -f docs/specs/SPEC-CODESSA-AWS-STAGE-001-v0.1.md
+          test -f docs/decisions/DEC-SPEC-CODESSA-AWS-STAGE-001-FREEZE.md
+          test -f docs/activation/AWS-ACTIVATE-SPENDBASE-PACK.md
+          test -f artifacts/conformance/AWS-STAGE-M1/STATE.md
+      - name: Validate frozen state is not falsely promoted
+        run: |
+          grep -q 'PENDING_EXECUTION / BLOCKED' artifacts/conformance/AWS-STAGE-M1/STATE.md
+          ! grep -R 'AWS-STAGE-M1.*PASS' artifacts/conformance/AWS-STAGE-M1/STATE.md
