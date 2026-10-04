@@ -19,3 +19,4 @@ Engineering provenance only. Not Codessa memory, evidence, observation, candidat
 | factory-013 | dispatch | C-006 | 5432baa | 3187dc8 | PASS | ACCEPT | unchanged | E-007 remains blocked | ACCEPTED |
 | factory-014 | dispatch | C-007 | 9e38104 | 2b0b8ff | PASS | ACCEPT | unchanged | E-007 remains blocked | ACCEPTED |
 | factory-015 | factory-test | dispatch | 9718632 | none | PASS | NO-OP | unchanged | no READY task; E-007 blocked | n/a |
+| factory-016 | assessment | none | 5355846 | none | n/a | recorded | unchanged | no READY task; E-007 blocked | n/a |
