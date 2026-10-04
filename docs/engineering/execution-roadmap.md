@@ -22,3 +22,5 @@ The earlier slice numbering and this queue do not match. Completed work is marke
 No task is READY. P-002 is implemented and pending human acceptance. E-007 remains BLOCKED. E-007 remains BLOCKED and is not authorized.
 
 Forbidden unless a task explicitly allows it: MCGL implementation, snapshot redesign, OpenViking, database selection, unrelated memory stores, frozen constitution changes, and A-005.
+
+The Codessa build queue is `docs/engineering/codessa-roadmap.md`. The only READY task is C-001.
