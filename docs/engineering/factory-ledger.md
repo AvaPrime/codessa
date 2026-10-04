@@ -8,4 +8,5 @@ Engineering provenance only. Not Codessa memory, evidence, observation, candidat
 | factory-002 | implementation | E-005 | 015382c | 669fd99 | PASS | ACCEPT | unchanged | external outcome authority | PENDING |
 | factory-003 | implementation | E-006 | 3ef57a5 | 8a37efa | PASS | ACCEPT | unchanged | external outcome authority | PENDING |
 | factory-004 | factory-test | F-001 | 9a6ae7d | none | FAIL | controls repaired | unchanged | no READY task was marked | n/a |
-| factory-005 | factory-test | F-001-AUTH-NEGATIVE | 3782f97 | none | PASS | no task READY | unchanged | E-007 remains blocked | n/a |
+| factory-005 | factory-test | F-001-AUTH-NEGATIVE | 3782f97 | none | PASS | NO-OP | unchanged | authorization none; modification none | n/a |
+| factory-006 | implementation | P-001 | ad39463 | pending | PASS | ACCEPT | unchanged | E-007 remains blocked | PENDING |
