@@ -19,6 +19,6 @@ The earlier slice numbering and this queue do not match. Completed work is marke
 | E-009 | Kernel integration | Later |
 | E-010 | End-to-end execution | Later |
 
-No task is READY. P-001 is implemented and pending human acceptance. E-007 remains BLOCKED and is not authorized.
+The only READY task is P-002. E-007 remains BLOCKED. E-007 remains BLOCKED and is not authorized.
 
 Forbidden unless a task explicitly allows it: MCGL implementation, snapshot redesign, OpenViking, database selection, unrelated memory stores, frozen constitution changes, and A-005.
