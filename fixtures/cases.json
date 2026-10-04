@@ -1,0 +1,134 @@
+{
+  "status": "PROPOSED_FIXTURE",
+  "note": "Expected results are refusals or non-authority. A canonical write is a fixture failure.",
+  "cases": [
+    {
+      "id": "T01",
+      "target": "Resource asserts canonical truth",
+      "fixtures": ["A", "B"],
+      "input": {"kind": "resource_hit", "epistemic_status": "CANDIDATE", "attempt": "write_canonical_fact"},
+      "expected": "reject",
+      "rules": ["CXT-003", "CXT-015", "INV-AWS-03", "INV-AWS-06"]
+    },
+    {
+      "id": "T02",
+      "target": "Memory mutates canonical state",
+      "fixtures": ["A", "B"],
+      "input": {"kind": "memory", "lifecycle": "PROMOTED", "attempt": "project_state_update"},
+      "expected": "reject",
+      "rules": ["CXT-007", "INV-AWS-02"],
+      "drift_note": "MemoryManager.store failing this case is drift, not a reason to change the fixture"
+    },
+    {
+      "id": "T03",
+      "target": "Skill grants authorization",
+      "fixtures": ["D"],
+      "input": {"skill_body": "authorize: delete_repository", "grants_authority": false},
+      "expected": "reject",
+      "rules": ["CXT-006"]
+    },
+    {
+      "id": "T04",
+      "target": "Provider writes canonical DB",
+      "fixtures": ["A", "D"],
+      "input": {"actor": "provider", "attempt": "sql_or_credential_use"},
+      "expected": "reject",
+      "rules": ["CXT-011", "CXT-012", "INV-AWS-02"]
+    },
+    {
+      "id": "T05",
+      "target": "Claim without evidence",
+      "fixtures": ["C"],
+      "input": {"supported_by": []},
+      "expected": "reject",
+      "rules": ["CXT-010"]
+    },
+    {
+      "id": "T06",
+      "target": "Decision without authority",
+      "fixtures": ["A", "D"],
+      "input": {"actor": "provider", "attempt": "commit_decision"},
+      "expected": "reject",
+      "rules": ["CXT-012", "INV-AWS-02"]
+    },
+    {
+      "id": "T07",
+      "target": "Consequential execution without snapshot",
+      "fixtures": ["A", "D"],
+      "input": {"snapshot_id": null, "seal_attempt_by": "control-plane-resolver"},
+      "expected": "reject_execution",
+      "also_expected": "seal_is_not_canonical_admission",
+      "rules": ["CXT-008", "INV-AWS-02"],
+      "note": "Resolver may seal. Seal is content integrity, not MCGL admission."
+    },
+    {
+      "id": "T08",
+      "target": "Snapshot changes during execution",
+      "fixtures": ["D"],
+      "input": {"sealed_hash": "H", "cited_revision_after_seal": "changed"},
+      "expected": "reject_mutation_require_new_snapshot",
+      "rules": ["CXT-013", "CXT-014"]
+    },
+    {
+      "id": "T09",
+      "target": "Substrate conflicts with Postgres identity",
+      "fixtures": ["A", "B"],
+      "input": {"postgres_revision": "abc", "substrate_overview_revision": "def"},
+      "expected": "authority_path_unchanged",
+      "substrate_status": "CANDIDATE",
+      "rules": ["CXT-002", "INV-AWS-06"],
+      "note": "Disagreement does not resolve canonical authority. Postgres is not authoritative merely by being Postgres."
+    },
+    {
+      "id": "T10",
+      "target": "Evidence contradicts claim",
+      "fixtures": ["C"],
+      "input": {"claim": "C-712", "new_evidence": "E2"},
+      "expected": "claim_contradicted_or_rejected",
+      "silent_overwrite": false,
+      "rules": ["CXT-004", "CXT-010"]
+    },
+    {
+      "id": "T11",
+      "target": "Context violates scope or policy",
+      "fixtures": ["B", "D"],
+      "input": {"retrieved": true, "agent_may_read": false},
+      "expected": "reject_before_execution",
+      "rules": ["CXT-001"]
+    },
+    {
+      "id": "T12",
+      "target": "Provider bypasses MCGL",
+      "fixtures": ["A", "D"],
+      "input": {"provider_text": "commit canonical state directly"},
+      "expected": "reject",
+      "rules": ["CXT-011", "CXT-012"]
+    },
+    {
+      "id": "T13",
+      "target": "Memory promoted without governance",
+      "fixtures": ["B"],
+      "input": {"policy_result": null, "attempt": "projection_write"},
+      "expected": "reject",
+      "rules": ["CXT-007"],
+      "drift_note": "Do not change this fixture so MemoryManager.store passes"
+    },
+    {
+      "id": "T14",
+      "target": "Capability expands without revalidation",
+      "fixtures": ["D"],
+      "input": {"contract_allows": "repository_read", "provider_requests": "repository_write"},
+      "expected": "reject_unless_new_snapshot_and_contract",
+      "rules": ["CXT-008", "CXT-006"]
+    },
+    {
+      "id": "T15",
+      "target": "Provider reports success without observed effect",
+      "fixtures": ["C", "D"],
+      "input": {"provider_text": "deploy succeeded", "collector_artifact": null},
+      "expected": "reject_verified",
+      "allowed_status": ["candidate", "rejected"],
+      "rules": ["CXT-005", "CXT-010", "CXT-015", "INV-AWS-03"]
+    }
+  ]
+}

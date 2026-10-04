@@ -1,0 +1,29 @@
+{
+  "fixture": "B",
+  "name": "Context Substrate",
+  "status": "PROPOSED_FIXTURE",
+  "adapters": [
+    {
+      "id": "openviking-like",
+      "retrieval_mode": "scoped_vector",
+      "progressive_read": ["L0", "L1", "L2"],
+      "progressive_read_is_doctrine": false
+    },
+    {
+      "id": "mock-exact",
+      "retrieval_mode": "exact",
+      "progressive_read": []
+    }
+  ],
+  "disagreement": {
+    "postgres_revision": "abc",
+    "openviking_like_overview_revision": "def",
+    "resolves_canonical_authority": false,
+    "substrate_result_status": "CANDIDATE"
+  },
+  "memory_projection": {
+    "uri": "viking://memories/M-173",
+    "epistemic_status": "CANDIDATE",
+    "may_commit_canonical": false
+  }
+}

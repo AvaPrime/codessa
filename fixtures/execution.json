@@ -1,0 +1,29 @@
+{
+  "fixture": "D",
+  "name": "Execution Layer",
+  "status": "PROPOSED_FIXTURE",
+  "snapshot": {
+    "snapshot_id": "S-991",
+    "sealed_by": "control-plane-resolver",
+    "seal_is_canonical_admission": false,
+    "content_hash_covers": ["intent_id", "resource_revisions", "memory_ids", "skill_versions", "policy_version"]
+  },
+  "execution_contract": {
+    "contract_id": "ICO-447",
+    "snapshot_id": "S-991",
+    "allowed_actions": ["repository_read"],
+    "forbidden_actions": ["repository_write", "canonical_commit"]
+  },
+  "provider_proposal": {
+    "actor": "provider",
+    "text": "deploy succeeded",
+    "observed_effect": null,
+    "admitted_as": "proposal"
+  },
+  "mcgl_transition": {
+    "actor": "mcgl",
+    "requires_evidence_ids": true,
+    "requires_epistemic_pass": true,
+    "requires_sealed_snapshot": true
+  }
+}

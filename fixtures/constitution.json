@@ -1,0 +1,20 @@
+{
+  "fixture": "A",
+  "name": "Canonical Constitution",
+  "status": "PROPOSED_FIXTURE",
+  "authority": "SPEC-CODESSA-AWS-STAGE-001 v0.1 + DEC-SPEC-CODESSA-AWS-STAGE-001-FREEZE",
+  "invariants": [
+    "INV-AWS-01",
+    "INV-AWS-02",
+    "INV-AWS-03",
+    "INV-AWS-06",
+    "INV-AWS-07"
+  ],
+  "rules": {
+    "sole_canonical_committer": "mcgl",
+    "retrieval_output": "candidate",
+    "worker_output": "candidate",
+    "snapshot_seal_is_canonical_admission": false,
+    "m1_state": "PENDING_EXECUTION / BLOCKED"
+  }
+}

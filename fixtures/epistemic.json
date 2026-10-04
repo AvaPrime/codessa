@@ -1,0 +1,21 @@
+{
+  "fixture": "C",
+  "name": "Epistemic Layer",
+  "status": "PROPOSED_FIXTURE",
+  "evidence": [
+    {"evidence_id": "E1", "kind": "evidence", "statement": "readme names supabase"},
+    {"evidence_id": "E2", "kind": "evidence", "statement": "deploy config names postgres"}
+  ],
+  "claim": {
+    "claim_id": "C-712",
+    "supported_by": ["E1"],
+    "contradicted_by": ["E2"],
+    "status_after_contradiction": "CONTRADICTED",
+    "silent_overwrite_allowed": false,
+    "evidence_deleted": false
+  },
+  "ecl_result": {
+    "epistemic_pass": false,
+    "reason": "contradiction"
+  }
+}
