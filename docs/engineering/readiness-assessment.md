@@ -6,7 +6,7 @@ E-007 remains BLOCKED.
 
 ## Finding
 
-The factory can execute an explicitly authorized task and stop when none is authorized. Codessa is not yet an autonomously buildable target. The missing front half is an inventory, contracts, a definition of done, and an authorized backlog. A scheduler would only automate the stop.
+The factory can execute an explicitly authorized task and stop when none is authorized. Codessa is not yet an autonomously buildable target. The missing front half was an inventory, contracts, a definition of done, and a candidate engineering graph. Those descriptive artifacts now exist. They authorize nothing. A scheduler would still only automate the stop.
 
 ## Status taxonomy
 
@@ -55,6 +55,14 @@ Memory and context, legacy or experimental.
 Agent runtime, legacy.
 Integration and end-to-end acceptance, missing.
 
-## Next artifact
+## Resolved descriptive boundary
 
-A subsystem contract matrix for request, context, provider result, observation, evidence, outcome, decision, commit, memory candidate, admission, agent action, persistence, and provenance. Each row states whether a contract, implementation, and test exist. That matrix still does not authorize implementation.
+The following artifacts now provide the missing descriptive layer:
+
+- `docs/engineering/subsystem-contract-matrix.md` — contract/code/test inventory.
+- `docs/engineering/system-acceptance.md` — whole-system definition of done.
+- `docs/engineering/candidate-build-graph.md` — dependency-aware candidate decomposition with no READY tasks.
+
+These artifacts do not authorize implementation, select infrastructure, resolve E-007, or change the constitution.
+
+The remaining blockers are now classified rather than ambiguous: missing/conflicting contracts are architectural work; already-defined contract implementations can become bounded factory work when explicitly authorized; E-007 remains an authority decision and stays BLOCKED.
