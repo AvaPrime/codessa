@@ -8,7 +8,7 @@ The core rule does not change by phase: a model reply is not an observation, an 
 | Id | Objective | State |
 |---|---|---|
 | C-001 | Land the refusal core in the repository | Implemented; human acceptance pending |
-| C-002 | Land industry packs as name maps only | Not started |
+| C-002 | Land industry packs as name maps only | READY |
 | C-003 | Persist records without making storage authoritative | Not started |
 | C-004 | Wire the core to the execution slice | Not started |
 | C-005 | Add a caller surface for one request | Not started |
@@ -16,4 +16,4 @@ The core rule does not change by phase: a model reply is not an observation, an 
 | C-006 | Kernel integration | Later |
 | C-007 | End-to-end product path | Later |
 
-No task is READY. E-007 is not authorized by this roadmap. A missing READY task is a successful stop.
+The only READY task is C-002. E-007 is not authorized by this roadmap. A missing READY task is a successful stop.
