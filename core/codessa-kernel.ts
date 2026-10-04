@@ -2,6 +2,7 @@ import { EventEmitter } from 'events';
 import { RegistryManager, Agent } from '../registry/registry-manager';
 import { ModelRouter } from '../model_router/model-router';
 import { MemoryManager } from '../memory/memory-manager';
+import { admitToStore } from '../memory/admission';
 import { GoalDecomposer } from '../planner/decomposer/goalDecomposer';
 import { Scheduler } from '../planner/scheduler/taskQueue';
 import { CognitionLoop } from '../planner/feedback/cognitionLoop';
@@ -188,15 +189,12 @@ class CodesssaKernel extends EventEmitter {
     // Execute the task through the selected model
     const result = await model.execute(task.content, task.metadata);
     
-    // Store result in memory if needed
+    // storeInMemory is no longer promotion. A model result is not stored.
     if (task.metadata?.storeInMemory) {
-      await this.memoryManager.store({
-        id: `task-result-${task.id}-${Date.now()}`,
-        type: 'task_result',
-        content: result,
-        agent: agent.name,
-        task_id: task.id,
-        timestamp: new Date().toISOString()
+      await admitToStore(this.memoryManager, {
+        candidate: task.metadata.candidate,
+        outcome: task.metadata.outcome,
+        model_result: result
       });
     }
 
@@ -227,9 +225,10 @@ class CodesssaKernel extends EventEmitter {
 
   async storeMemory(data: any): Promise<void> {
     this.ensureInitialized();
-    
-    await this.memoryManager.store(data);
-    this.emit('memory.stored', data);
+    const admitted = await admitToStore(this.memoryManager, data);
+    if (admitted.promoted && admitted.record) {
+      this.emit('memory.stored', admitted.record);
+    }
   }
 
   // Guild Operations
