@@ -14,6 +14,7 @@
     "start": "node core/codessa-kernel.js",
     "build": "tsc",
     "test": "jest",
+    "verify:slice": "bash scripts/verify-slice.sh",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:meta": "jest src/__tests__/meta --coverage --config=src/__tests__/meta/jest.config.js",
