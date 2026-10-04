@@ -27,3 +27,4 @@ fi
 echo "verify:slice PASS"
 run tests/codessa-core.ts
 run tests/packs.ts
+run tests/record-store.ts
