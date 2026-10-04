@@ -16,6 +16,7 @@ run() {
 run tests/execution-slice.ts
 run tests/execution-contract.ts
 run tests/model-router.ts
+run tests/execution-record.ts
 if [ "$fail" -ne 0 ]; then
   echo "verify:slice FAIL"
   exit 1

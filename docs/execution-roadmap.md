@@ -10,7 +10,7 @@ Each item is one bounded change: implement, test, diff, pass or fail. Stop and r
 |---|---|---|
 | E-001 | Execution-contract integrity | Done at `fa5f64d` |
 | E-002 | Model router behind the sealed contract | Implemented; see router tests |
-| E-003 | One execution record for the run | Not started |
+| E-003 | One execution record for the run | Implemented; record is not authority |
 | E-004 | Failure-path coverage | Not started |
 | E-005 | Persist execution records | Not started |
 | E-006 | Provider adapter beyond the two mocks | Not started |

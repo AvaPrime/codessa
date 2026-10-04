@@ -59,6 +59,47 @@ export interface SliceResult {
   committed: boolean;
   promoted: boolean;
   refused?: string;
+  record?: ExecutionRecord;
+}
+
+
+export interface ExecutionRecord {
+  runId: string;
+  sealedContract: ExecutionContract;
+  contextHash: string;
+  allowedActions: readonly string[];
+  selectedProvider?: string;
+  modelOutput?: ModelOutput;
+  observation?: Observation;
+  externalOutcome?: string;
+  commitReference?: string;
+  promotionResult?: "promoted" | "not_promoted";
+  refused?: string;
+}
+
+const records: ExecutionRecord[] = [];
+
+export function listExecutionRecords(): ExecutionRecord[] {
+  return records.map((item) => ({
+    ...item,
+    allowedActions: [...item.allowedActions],
+    sealedContract: { ...item.sealedContract, allowed_actions: [...item.sealedContract.allowed_actions] },
+    modelOutput: item.modelOutput ? { ...item.modelOutput } : undefined,
+    observation: item.observation ? { ...item.observation } : undefined,
+  }));
+}
+
+function remember(record: ExecutionRecord): ExecutionRecord {
+  const stored: ExecutionRecord = {
+    ...record,
+    allowedActions: Object.freeze([...record.allowedActions]),
+    sealedContract: Object.freeze({
+      ...record.sealedContract,
+      allowed_actions: Object.freeze([...record.sealedContract.allowed_actions]),
+    }),
+  };
+  records.push(stored);
+  return stored;
 }
 
 const commits: CommitRecord[] = [];
@@ -69,6 +110,7 @@ export function listCommits(): CommitRecord[] {
 
 export function clearSlice(): void {
   commits.length = 0;
+  records.length = 0;
 }
 
 function hash(value: string): string {
@@ -90,6 +132,14 @@ export async function runSlice(
   const contract = sealContract(input.request);
   const action = input.request.action ?? contract.allowed_actions[0];
   if (!contract.allowed_actions.includes(action)) {
+    const record = remember({
+      runId: contract.run_id,
+      sealedContract: contract,
+      contextHash: contract.context_hash,
+      allowedActions: contract.allowed_actions,
+      refused: "action not allowed",
+      promotionResult: "not_promoted",
+    });
     return {
       run_id: contract.run_id,
       contract,
@@ -98,6 +148,7 @@ export async function runSlice(
       committed: false,
       promoted: false,
       refused: "action not allowed",
+      record,
     };
   }
 
@@ -117,6 +168,16 @@ export async function runSlice(
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "provider failed";
+    const refused = message.startsWith("unknown provider") ? "unknown provider" : "provider failed";
+    const record = remember({
+      runId: contract.run_id,
+      sealedContract: contract,
+      contextHash: contract.context_hash,
+      allowedActions: contract.allowed_actions,
+      selectedProvider: input.request.provider,
+      refused,
+      promotionResult: "not_promoted",
+    });
     return {
       run_id: contract.run_id,
       contract,
@@ -124,7 +185,8 @@ export async function runSlice(
       contract_actions: contract.allowed_actions,
       committed: false,
       promoted: false,
-      refused: message.startsWith("unknown provider") ? "unknown provider" : "provider failed",
+      refused,
+      record,
     };
   }
   const raw = model_output.raw_result;
@@ -168,6 +230,18 @@ export async function runSlice(
   };
   const admitted = await admitToStore(store, admission);
   promoted = admitted.promoted;
+  const record = remember({
+    runId: contract.run_id,
+    sealedContract: contract,
+    contextHash: contract.context_hash,
+    allowedActions: contract.allowed_actions,
+    selectedProvider: model_output.provider,
+    modelOutput: model_output,
+    observation: input.observation,
+    externalOutcome: input.governance?.outcome,
+    commitReference: committed ? input.governance?.decision_id : undefined,
+    promotionResult: promoted ? "promoted" : "not_promoted",
+  });
   return {
     run_id: contract.run_id,
     contract,
@@ -177,6 +251,7 @@ export async function runSlice(
     evidence_id,
     committed,
     promoted,
+    record,
   };
 }
 
