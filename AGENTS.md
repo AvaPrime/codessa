@@ -49,3 +49,10 @@ Report task id, summary, files changed, tests run, verification result, invarian
 ## Git
 
 Keep commits narrowly scoped. Do not modify unrelated files. Do not rewrite history unless explicitly instructed. Do not merge branches automatically unless explicitly authorized. A passing implementation is evidence for review, not automatic architectural approval.
+
+
+## Factory
+
+The factory is an execution mechanism, not an architectural authority. The frozen baseline is `db887f32`. Do not modify `docs/specs/` or `docs/decisions/` unless a task explicitly permits it. Do not recreate completed queue items. The next unimplemented item before this trial was E-004. A failing test is evidence. Do not weaken a test to obtain a green result. If a task needs a constitutional decision, stop.
+
+The builder may implement the assigned task and report. The builder may not declare its own implementation constitutionally valid. The reviewer inspects the diff and does not rewrite it.

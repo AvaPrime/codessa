@@ -11,7 +11,7 @@ The earlier slice numbering and this queue do not match. Completed work is marke
 | E-001 | Verify execution-contract integrity | Done on the slice at `fa5f64d` |
 | E-002 | Formalize execution record | Done on the slice at `1d22888` |
 | E-003 | Provider adapter boundary | Done on the slice as the model router at `a2db38e` |
-| E-004 | Failure-path coverage | Next |
+| E-004 | Failure-path coverage | Trial implemented; pending review |
 | E-005 | Observation capture | Not started |
 | E-006 | Outcome verification | Not started |
 | E-007 | Authority-validation seam | Not started; do not redefine the constitution |
