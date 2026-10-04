@@ -13,12 +13,12 @@ The earlier slice numbering and this queue do not match. Completed work is marke
 | E-003 | Provider adapter boundary | Done on the slice as the model router at `a2db38e` |
 | E-004 | Failure-path coverage | Implemented at `015382c`; human acceptance pending |
 | E-005 | Observation capture | Trial implemented; human acceptance pending |
-| E-006 | Outcome verification | Not started |
+| E-006 | Outcome intake | Trial implemented; human acceptance pending |
 | E-007 | Authority-validation seam | Not started; do not redefine the constitution |
 | E-008 | Execution persistence | Not started |
 | E-009 | Kernel integration | Later |
 | E-010 | End-to-end execution | Later |
 
-E-006 is the next unimplemented item. External-outcome authority remains unresolved and is not part of E-006 unless a task says so.
+E-007 remains the unresolved authority seam and is not started.
 
 Forbidden unless a task explicitly allows it: MCGL implementation, snapshot redesign, OpenViking, database selection, unrelated memory stores, frozen constitution changes, and A-005.

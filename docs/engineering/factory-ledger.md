@@ -6,3 +6,4 @@ Engineering provenance only. Not Codessa memory and not canonical state.
 |---|---|---|---|---|---|---|---|---|---|
 | factory-001 | E-004 | b5d918e | 015382c | PASS | ACCEPT | tests and factory notes | unchanged | external outcome authority | PENDING |
 | factory-002 | E-005 | 015382c | 669fd99 | PASS | ACCEPT | slice observation check and tests | unchanged | external outcome authority, not absorbed | PENDING |
+| factory-003 | E-006 | 3ef57a5 | pending | PASS | ACCEPT | outcome intake and tests | unchanged | external outcome authority | PENDING |

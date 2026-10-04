@@ -125,6 +125,13 @@ export function sealContract(request: RunRequest): ExecutionContract {
   return Object.freeze({ contract_id, run_id, context_hash, allowed_actions });
 }
 
+
+export function readExternalOutcome(rawResult: string, governance?: SliceInput["governance"]): string | undefined {
+  if (!governance || !governance.decision_id || !governance.outcome) return undefined;
+  if (rawResult.includes(governance.outcome) && !governance.decision_id) return undefined;
+  return governance.outcome;
+}
+
 export async function runSlice(
   input: SliceInput,
   store: { store(data: unknown): Promise<void> },
@@ -247,7 +254,7 @@ export async function runSlice(
     selectedProvider: model_output.provider,
     modelOutput: model_output,
     observation: observationValid ? input.observation : undefined,
-    externalOutcome: input.governance?.outcome,
+    externalOutcome: readExternalOutcome(raw, input.governance),
     commitReference: committed ? input.governance?.decision_id : undefined,
     promotionResult: promoted ? "promoted" : "not_promoted",
   });
