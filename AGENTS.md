@@ -65,3 +65,4 @@ The builder may implement the assigned task and report. The builder may not decl
 Task existence does not imply task authorization. A task may be historical, proposed, blocked, READY, in progress, completed, rejected, or superseded. A worker may execute only a task explicitly marked READY and assigned to the current run. A worker must not infer authorization from task numbering, chronological order, unresolved seams, reviewer comments, conversation history, an obvious next step, or its own architectural judgment.
 
 The roadmap is the queue. The ledger is history. The verifier checks required invariants. Review judges the diff. Human acceptance is the only step that makes a result accepted project state.
+No READY task is a successful stop. The factory must terminate without implementation when no task is READY. That result is not a failure.
