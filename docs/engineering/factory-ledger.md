@@ -10,4 +10,4 @@ Engineering provenance only. Not Codessa memory, evidence, observation, candidat
 | factory-004 | factory-test | F-001 | 9a6ae7d | none | FAIL | controls repaired | unchanged | no READY task was marked | n/a |
 | factory-005 | factory-test | F-001-AUTH-NEGATIVE | 3782f97 | none | PASS | NO-OP | unchanged | authorization none; modification none | n/a |
 | factory-006 | implementation | P-001 | ad39463 | bf2ea06 | PASS | ACCEPT | unchanged | E-007 remains blocked | PENDING |
-| factory-007 | dispatch | P-002 | f953344 | pending | PASS | ACCEPT | unchanged | E-007 remains blocked | PENDING |
+| factory-007 | dispatch | P-002 | f953344 | c06a577 | PASS | ACCEPT | unchanged | E-007 remains blocked | PENDING |
