@@ -1,40 +1,51 @@
-# Codessa Engineering Rules
+# Codessa Engineering Instructions
 
-## Frozen constitution
+## Purpose
 
-Do not modify `SPEC-CODESSA-AWS-STAGE-001` or its freeze decision without explicit authorization. M1 stays `PENDING_EXECUTION / BLOCKED` until evidence says otherwise.
+Codessa is developed through bounded implementation slices. Agents are implementation workers. They do not redefine Codessa's constitutional authority.
 
 ## Authority
 
-Provider output is never authority. A skill is never authority. Retrieval is never evidence. Model output is never evidence by itself. Execution does not create canonical state by itself. A canonical transition needs the governed evidence and decision path. `COMMIT` is an externally supplied outcome unless a later authorized change says otherwise.
+The frozen Codessa constitution is authoritative. Do not modify frozen specifications, freeze decisions, or constitutional invariants unless the task explicitly authorizes that change.
 
-## Current build
+Provider output is not authority. Model output is not evidence by itself. Retrieval is not evidence by itself. Storage is not promotion. A successful model response is not proof that an external action succeeded. A candidate is not canonical merely because it exists in a database, file, vector store, memory store, or agent context.
 
-The active branch is `codessa-execution-slice`. Build forward from that slice. Do not reopen `codessa-context-architecture`. Do not open A-005. Do not select OpenViking or another substrate as part of a slice task.
+## Scope
 
-## Engineering mode
+Implement only the task currently assigned. Do not reopen closed branches. Do not introduce OpenViking, a new database, vector store, graph store, or other infrastructure unless the task explicitly authorizes it. Do not repair unrelated historical architecture while implementing a bounded task. Prefer the smallest reversible implementation that satisfies the acceptance tests.
 
-Prefer a small implementation over a new design track. If a requirement is ambiguous and does not change authority, add the smallest reversible interface. Do not silently broaden scope. Run the slice verification after a slice change.
+`codessa-context-architecture` stays closed. `codessa-memory-admission` stays as recorded. `codessa-execution-slice` is the active implementation track. Do not open A-005.
 
-Report files changed, tests run, failures, invariant implications, and remaining limitations.
+## Evidence
 
-## Current task
+Do not manufacture evidence to make a test pass. Do not convert model output into an observation. Do not convert an observation into a decision. Do not treat a test fixture as production authority. When evidence is unavailable, report that it is unavailable.
 
-Implement E-002 only, as specified in `docs/e2-model-router-prd.md`.
+## Memory
 
-Call the model router only after the execution contract is sealed and the requested action is in the sealed allowed list. The router selects a configured provider and returns raw text as untrusted model output. Keep the current mock as one provider. Add a second mock only to prove that the selected provider changes the recorded output source and does not change authority.
+Memory storage and memory admission are separate. A stored candidate is not necessarily durable or canonical memory. Do not bypass an existing admission boundary. Do not modify unrelated memory stores unless the task includes them.
 
-Do not let the router authorize an action, create evidence, issue `COMMIT` or `PROMOTE`, or rewrite the contract. An unknown provider or a thrown provider fails closed: no evidence and no commit. Provider text that claims `COMMIT` or a new action list is not authority.
+## Execution
 
-Do not modify the frozen constitution, `core/codessa-kernel.ts` `executeTask`, the closed context branch, or the admission gate's meaning. Run `npm run verify:slice` and the new router tests. Report files changed, tests run, failures, invariant implications, and remaining limitations. Stop after E-002.
+Execution must not silently acquire authority. Do not interpret provider success text as proof of an external effect. Do not invent execution outcomes. Do not broaden an execution task into an architecture redesign.
 
+## Implementation
 
-## Next task
+Before changing code, read the assigned task, the relevant implementation, the tests covering the behavior, the files permitted to change, and the applicable invariants. Implement the smallest change necessary.
 
-Do not start this until E-002 is implemented and `npm run verify:slice` passes.
+## Verification
 
-Implement E-003 only: one execution record for the run on `codessa-execution-slice`.
+After implementation, run the task-specific tests, the Codessa verification command, and inspect the diff. Confirm files outside the declared scope were not changed. Do not report success if verification failed.
 
-The record must include the sealed contract, context hash, allowed actions, selected provider, model output, observation if present, external outcome if present, commit reference if committed, and promotion result if promoted. It is a record of what happened. It is not a new authority.
+The verification command is `npm run codessa:verify`.
 
-Do not let the record rewrite the contract, turn model output into evidence, or issue `COMMIT`. Do not modify the frozen constitution, `executeTask`, or the closed context branch. Run `npm run verify:slice` and the new record tests. Report files changed, tests run, failures, invariant implications, and remaining limitations. Stop after E-003.
+## Stop conditions
+
+Stop and report instead of improvising when the task contradicts a frozen invariant, the required behavior is ambiguous in a way that affects authority, the task requires an out-of-scope subsystem, a required dependency is unavailable, tests and the stated contract disagree, or the smallest implementation cannot satisfy the acceptance criteria.
+
+## Completion report
+
+Report task id, summary, files changed, tests run, verification result, invariants affected, known limitations, and follow-up work discovered. Do not silently create additional work.
+
+## Git
+
+Keep commits narrowly scoped. Do not modify unrelated files. Do not rewrite history unless explicitly instructed. Do not merge branches automatically unless explicitly authorized. A passing implementation is evidence for review, not automatic architectural approval.
