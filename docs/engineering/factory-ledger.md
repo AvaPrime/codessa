@@ -1,9 +1,10 @@
 # Factory run ledger
 
-Engineering provenance only. Not Codessa memory and not canonical state.
+Engineering provenance only. Not Codessa memory, evidence, observation, candidate state, or canonical project knowledge. Not the queue. Not authorization. Not human acceptance.
 
-| run_id | task_id | base_commit | implementation_commit | verification_result | review_result | files_changed | constitutional_impact | unresolved | human_acceptance |
+| run_id | type | task_id | base_commit | implementation_commit | verification_result | review_result | constitutional_impact | unresolved | human_acceptance |
 |---|---|---|---|---|---|---|---|---|---|
-| factory-001 | E-004 | b5d918e | 015382c | PASS | ACCEPT | tests and factory notes | unchanged | external outcome authority | PENDING |
-| factory-002 | E-005 | 015382c | 669fd99 | PASS | ACCEPT | slice observation check and tests | unchanged | external outcome authority, not absorbed | PENDING |
-| factory-003 | E-006 | 3ef57a5 | 8a37efa | PASS | ACCEPT | outcome intake and tests | unchanged | external outcome authority | PENDING |
+| factory-001 | implementation | E-004 | b5d918e | 015382c | PASS | ACCEPT | unchanged | external outcome authority | PENDING |
+| factory-002 | implementation | E-005 | 015382c | 669fd99 | PASS | ACCEPT | unchanged | external outcome authority | PENDING |
+| factory-003 | implementation | E-006 | 3ef57a5 | 8a37efa | PASS | ACCEPT | unchanged | external outcome authority | PENDING |
+| factory-004 | factory-test | F-001 | 9a6ae7d | none | FAIL | controls repaired | unchanged | no READY task was marked | n/a |

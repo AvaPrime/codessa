@@ -56,3 +56,12 @@ Keep commits narrowly scoped. Do not modify unrelated files. Do not rewrite hist
 The factory is an execution mechanism, not an architectural authority. The frozen baseline is `db887f32`. Do not modify `docs/specs/` or `docs/decisions/` unless a task explicitly permits it. Do not recreate completed queue items. The next unimplemented item before this trial was E-004. A failing test is evidence. Do not weaken a test to obtain a green result. If a task needs a constitutional decision, stop.
 
 The builder may implement the assigned task and report. The builder may not declare its own implementation constitutionally valid. The reviewer inspects the diff and does not rewrite it.
+
+
+## Factory artifacts
+
+`docs/engineering/factory-ledger.md` is engineering provenance. It records factory executions and their verification or review state. It is not Codessa memory, evidence, observation, candidate state, or canonical project knowledge. It answers what the engineering process did. It does not answer what Codessa knows, and it is not the queue.
+
+Task existence does not imply task authorization. A task may be historical, proposed, blocked, READY, in progress, completed, rejected, or superseded. A worker may execute only a task explicitly marked READY and assigned to the current run. A worker must not infer authorization from task numbering, chronological order, unresolved seams, reviewer comments, conversation history, an obvious next step, or its own architectural judgment.
+
+The roadmap is the queue. The ledger is history. The verifier checks required invariants. Review judges the diff. Human acceptance is the only step that makes a result accepted project state.
