@@ -1,6 +1,6 @@
 /**
  * One request through the canonical lifecycle.
- * The model may speak. It may not commit, observe, or promote.
+ * The model may speak. It may not commit, observe, promote, or rewrite the contract.
  */
 import { createHash } from "crypto";
 import { admitToStore, AdmissionRequest, listAdmissionDecisions } from "../memory/admission";
@@ -10,6 +10,14 @@ export interface RunRequest {
   text: string;
   context_ids: string[];
   allowed_actions: string[];
+  action?: string;
+}
+
+export interface ExecutionContract {
+  contract_id: string;
+  run_id: string;
+  context_hash: string;
+  allowed_actions: readonly string[];
 }
 
 export interface ModelOutput {
@@ -31,34 +39,68 @@ export interface SliceInput {
   governance?: { decision_id: string; outcome: "PROMOTE" | "REJECT" | "QUARANTINE" | "COMMIT" };
 }
 
+export interface CommitRecord {
+  decision_id: string;
+  contract_id: string;
+  run_id: string;
+  context_hash: string;
+  evidence_id: string;
+}
+
 export interface SliceResult {
   run_id: string;
+  contract: ExecutionContract;
   snapshot_id: string;
-  contract_actions: string[];
-  model_output: ModelOutput;
+  contract_actions: readonly string[];
+  model_output?: ModelOutput;
   evidence_id?: string;
   committed: boolean;
   promoted: boolean;
+  refused?: string;
 }
 
-const commits: string[] = [];
+const commits: CommitRecord[] = [];
 
-export function listCommits(): string[] {
-  return [...commits];
+export function listCommits(): CommitRecord[] {
+  return commits.map((item) => ({ ...item }));
 }
 
 export function clearSlice(): void {
   commits.length = 0;
 }
 
+function hash(value: string): string {
+  return createHash("sha256").update(value).digest("hex").slice(0, 16);
+}
+
+export function sealContract(request: RunRequest): ExecutionContract {
+  const run_id = `run-${request.request_id}`;
+  const context_hash = hash(request.context_ids.join("|"));
+  const allowed_actions = Object.freeze([...request.allowed_actions]);
+  const contract_id = hash(`${run_id}|${context_hash}|${allowed_actions.join("|")}`);
+  return Object.freeze({ contract_id, run_id, context_hash, allowed_actions });
+}
+
 export async function runSlice(
   input: SliceInput,
   store: { store(data: unknown): Promise<void> },
 ): Promise<SliceResult> {
-  const run_id = `run-${input.request.request_id}`;
-  const snapshot_id = createHash("sha256").update(input.request.context_ids.join("|")).digest("hex").slice(0, 16);
+  const contract = sealContract(input.request);
+  const action = input.request.action ?? contract.allowed_actions[0];
+  if (!contract.allowed_actions.includes(action)) {
+    return {
+      run_id: contract.run_id,
+      contract,
+      snapshot_id: contract.context_hash,
+      contract_actions: contract.allowed_actions,
+      committed: false,
+      promoted: false,
+      refused: "action not allowed",
+    };
+  }
+
   const raw = await input.model(input.request.text);
-  const model_output: ModelOutput = { provider: "model", run_id, raw_result: raw };
+  const model_output: ModelOutput = { provider: "model", run_id: contract.run_id, raw_result: raw };
   let evidence_id: string | undefined;
   let committed = false;
   let promoted = false;
@@ -68,7 +110,13 @@ export async function runSlice(
   }
 
   if (input.governance?.outcome === "COMMIT" && evidence_id && input.governance.decision_id) {
-    commits.push(input.governance.decision_id);
+    commits.push({
+      decision_id: input.governance.decision_id,
+      contract_id: contract.contract_id,
+      run_id: contract.run_id,
+      context_hash: contract.context_hash,
+      evidence_id,
+    });
     committed = true;
   }
 
@@ -76,7 +124,7 @@ export async function runSlice(
     model_result: raw,
     candidate: input.observation
       ? {
-          candidate_id: `cand-${run_id}`,
+          candidate_id: `cand-${contract.run_id}`,
           content: input.observation.content,
           observation_refs: [input.observation.observation_id],
           source_refs: [input.observation.source],
@@ -86,7 +134,7 @@ export async function runSlice(
       input.governance && input.governance.outcome !== "COMMIT"
         ? {
             decision_id: input.governance.decision_id,
-            candidate_id: `cand-${run_id}`,
+            candidate_id: `cand-${contract.run_id}`,
             outcome: input.governance.outcome,
           }
         : undefined,
@@ -94,9 +142,10 @@ export async function runSlice(
   const admitted = await admitToStore(store, admission);
   promoted = admitted.promoted;
   return {
-    run_id,
-    snapshot_id,
-    contract_actions: [...input.request.allowed_actions],
+    run_id: contract.run_id,
+    contract,
+    snapshot_id: contract.context_hash,
+    contract_actions: contract.allowed_actions,
     model_output,
     evidence_id,
     committed,
