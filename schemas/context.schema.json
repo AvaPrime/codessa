@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AvaPrime/codessa/schemas/context.schema.json",
+  "title": "Context",
+  "description": "Resolved view for one operation. Not authority. Contract v0.1 proposal.",
+  "type": "object",
+  "required": ["context_id", "intent_id", "agent_id", "project_id", "resource_ids", "memory_ids", "skill_ids", "constraint_ids"],
+  "properties": {
+    "context_id": {"type": "string"},
+    "intent_id": {"type": "string"},
+    "agent_id": {"type": "string"},
+    "project_id": {"type": "string"},
+    "resource_ids": {"type": "array", "items": {"type": "string"}},
+    "memory_ids": {"type": "array", "items": {"type": "string"}},
+    "skill_ids": {"type": "array", "items": {"type": "string"}},
+    "claim_ids": {"type": "array", "items": {"type": "string"}},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}},
+    "constraint_ids": {"type": "array", "items": {"type": "string"}},
+    "token_budget": {"type": "integer", "minimum": 0}
+  },
+  "additionalProperties": false
+}

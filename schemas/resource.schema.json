@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AvaPrime/codessa/schemas/resource.schema.json",
+  "title": "Resource",
+  "description": "Externally originating material. Identity is provider+locator+revision+hash, not name.",
+  "type": "object",
+  "required": ["resource_id", "provider", "locator", "revision", "content_hash", "lifecycle"],
+  "properties": {
+    "resource_id": {"type": "string"},
+    "provider": {"type": "string"},
+    "locator": {"type": "string"},
+    "revision": {"type": "string"},
+    "content_hash": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "lifecycle": {"enum": ["DISCOVERED", "INGESTED", "INDEXED", "AVAILABLE", "SUPERSEDED", "ARCHIVED"]},
+    "trust": {"enum": ["UNTRUSTED", "SOURCE_ATTESTED", "COLLECTED"]}
+  },
+  "additionalProperties": false
+}

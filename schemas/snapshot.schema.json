@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AvaPrime/codessa/schemas/snapshot.schema.json",
+  "title": "Snapshot",
+  "description": "Immutable contextual basis of an execution.",
+  "type": "object",
+  "required": ["snapshot_id", "intent_id", "resource_revisions", "memory_ids", "skill_versions", "policy_version", "content_hash", "sealed"],
+  "properties": {
+    "snapshot_id": {"type": "string"},
+    "intent_id": {"type": "string"},
+    "resource_revisions": {"type": "array", "items": {"type": "string"}},
+    "memory_ids": {"type": "array", "items": {"type": "string"}},
+    "skill_versions": {"type": "array", "items": {"type": "string"}},
+    "claim_ids": {"type": "array", "items": {"type": "string"}},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}},
+    "policy_version": {"type": "string"},
+    "content_hash": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "sealed": {"const": true}
+  },
+  "additionalProperties": false
+}

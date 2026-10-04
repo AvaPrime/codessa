@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AvaPrime/codessa/schemas/evidence.schema.json",
+  "title": "Evidence",
+  "description": "Immutable observation. Not a claim, decision, or truth.",
+  "type": "object",
+  "required": ["evidence_id", "content_hash", "collector", "captured_at", "snapshot_id", "kind"],
+  "properties": {
+    "evidence_id": {"type": "string"},
+    "content_hash": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "collector": {"type": "string"},
+    "captured_at": {"type": "string"},
+    "snapshot_id": {"type": "string"},
+    "artifact_ref": {"type": "string"},
+    "observation_type": {"type": "string"},
+    "kind": {"const": "evidence"}
+  },
+  "additionalProperties": false
+}

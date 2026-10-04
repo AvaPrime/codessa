@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AvaPrime/codessa/schemas/claim.schema.json",
+  "title": "Claim",
+  "description": "A proposition. Must cite evidence. Cannot be born canonical.",
+  "type": "object",
+  "required": ["claim_id", "statement", "supported_by", "status", "kind"],
+  "properties": {
+    "claim_id": {"type": "string"},
+    "statement": {"type": "string"},
+    "supported_by": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "contradicted_by": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["PROPOSED", "SUPPORTED", "VALIDATED", "CONTRADICTED", "REJECTED"]},
+    "epistemic_pass": {"type": "boolean"},
+    "kind": {"const": "claim"}
+  },
+  "additionalProperties": false
+}

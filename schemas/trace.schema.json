@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AvaPrime/codessa/schemas/trace.schema.json",
+  "title": "Trace",
+  "description": "Path record. Retrieval telemetry is not a canonical transition.",
+  "type": "object",
+  "required": ["trace_id", "snapshot_id", "steps"],
+  "properties": {
+    "trace_id": {"type": "string"},
+    "snapshot_id": {"type": "string"},
+    "retrieval_mode": {"type": "string"},
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "at"],
+        "properties": {
+          "kind": {"enum": ["query", "scope", "candidate", "filter", "rerank", "read", "policy", "provider", "observation", "deny"]},
+          "at": {"type": "string"},
+          "ref": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

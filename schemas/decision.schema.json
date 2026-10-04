@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AvaPrime/codessa/schemas/decision.schema.json",
+  "title": "Decision",
+  "description": "Authorized state-changing determination. Actor must be mcgl to commit.",
+  "type": "object",
+  "required": ["decision_id", "claim_ids", "evidence_ids", "snapshot_id", "actor", "status", "kind"],
+  "properties": {
+    "decision_id": {"type": "string"},
+    "claim_ids": {"type": "array", "items": {"type": "string"}},
+    "evidence_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "snapshot_id": {"type": "string"},
+    "policy_ref": {"type": "string"},
+    "actor": {"const": "mcgl"},
+    "status": {"enum": ["PROPOSED", "REVIEWED", "AUTHORIZED", "COMMITTED", "DENIED"]},
+    "kind": {"const": "decision"}
+  },
+  "additionalProperties": false
+}
