@@ -25,6 +25,7 @@ run tests/packs.ts
 run tests/record-store.ts
 run tests/slice-core.ts
 run tests/caller.ts
+run tests/kernel-bridge.ts
 if [ "$fail" -ne 0 ]; then
   echo "verify:slice FAIL"
   exit 1

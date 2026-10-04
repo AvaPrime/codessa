@@ -3,6 +3,7 @@ import { RegistryManager, Agent } from '../registry/registry-manager';
 import { ModelRouter } from '../model_router/model-router';
 import { MemoryManager } from '../memory/memory-manager';
 import { admitToStore } from '../memory/admission';
+import { CallerRequest, handleRequest } from '../runtime/caller';
 import { GoalDecomposer } from '../planner/decomposer/goalDecomposer';
 import { Scheduler } from '../planner/scheduler/taskQueue';
 import { CognitionLoop } from '../planner/feedback/cognitionLoop';
@@ -211,6 +212,10 @@ class CodesssaKernel extends EventEmitter {
         task.type.includes(cap) || cap.includes(task.type)
       )
     ) || agents[0]; // Fallback to first agent
+  }
+
+  async runGoverned(request: CallerRequest) {
+    return handleRequest(request);
   }
 
   // Memory Operations
