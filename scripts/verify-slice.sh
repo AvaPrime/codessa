@@ -24,6 +24,7 @@ run tests/codessa-core.ts
 run tests/packs.ts
 run tests/record-store.ts
 run tests/slice-core.ts
+run tests/caller.ts
 if [ "$fail" -ne 0 ]; then
   echo "verify:slice FAIL"
   exit 1
