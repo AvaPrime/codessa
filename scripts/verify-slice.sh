@@ -20,11 +20,12 @@ run tests/execution-record.ts
 run tests/failure-paths.ts
 run tests/observation-capture.ts
 run tests/outcome-intake.ts
+run tests/codessa-core.ts
+run tests/packs.ts
+run tests/record-store.ts
+run tests/slice-core.ts
 if [ "$fail" -ne 0 ]; then
   echo "verify:slice FAIL"
   exit 1
 fi
 echo "verify:slice PASS"
-run tests/codessa-core.ts
-run tests/packs.ts
-run tests/record-store.ts

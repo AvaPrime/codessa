@@ -5,6 +5,7 @@
 import { createHash } from "crypto";
 import { admitToStore, AdmissionRequest, listAdmissionDecisions } from "../memory/admission";
 import { registerProvider, route } from "./model-router";
+import { run as runCore } from "./codessa-core";
 
 export interface RunRequest {
   request_id: string;
@@ -246,6 +247,25 @@ export async function runSlice(
   };
   const admitted = await admitToStore(store, admission);
   promoted = admitted.promoted;
+  const core = await runCore({
+    request: {
+      requestId: input.request.request_id,
+      text: input.request.text,
+      contextIds: input.request.context_ids,
+      allowedActions: [...contract.allowed_actions],
+      action,
+      provider: model_output.provider,
+    },
+    providers: { [model_output.provider]: async () => raw },
+    observation: observationValid && observation
+      ? { observationId: observation.observation_id, source: observation.source, content: observation.content }
+      : undefined,
+    outcome: input.governance
+      ? { decisionId: input.governance.decision_id, outcome: input.governance.outcome, roleLabel: undefined }
+      : undefined,
+  });
+  committed = committed && core.committed;
+  promoted = promoted && core.promoted;
   const record = remember({
     runId: contract.run_id,
     sealedContract: contract,
