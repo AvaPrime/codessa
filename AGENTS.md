@@ -17,3 +17,13 @@ The active branch is `codessa-execution-slice`. Build forward from that slice. D
 Prefer a small implementation over a new design track. If a requirement is ambiguous and does not change authority, add the smallest reversible interface. Do not silently broaden scope. Run the slice verification after a slice change.
 
 Report files changed, tests run, failures, invariant implications, and remaining limitations.
+
+## Current task
+
+Implement E-002 only, as specified in `docs/e2-model-router-prd.md`.
+
+Call the model router only after the execution contract is sealed and the requested action is in the sealed allowed list. The router selects a configured provider and returns raw text as untrusted model output. Keep the current mock as one provider. Add a second mock only to prove that the selected provider changes the recorded output source and does not change authority.
+
+Do not let the router authorize an action, create evidence, issue `COMMIT` or `PROMOTE`, or rewrite the contract. An unknown provider or a thrown provider fails closed: no evidence and no commit. Provider text that claims `COMMIT` or a new action list is not authority.
+
+Do not modify the frozen constitution, `core/codessa-kernel.ts` `executeTask`, the closed context branch, or the admission gate's meaning. Run `npm run verify:slice` and the new router tests. Report files changed, tests run, failures, invariant implications, and remaining limitations. Stop after E-002.
