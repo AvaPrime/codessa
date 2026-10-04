@@ -12,3 +12,4 @@ Engineering provenance only. Not Codessa memory, evidence, observation, candidat
 | factory-006 | implementation | P-001 | ad39463 | bf2ea06 | PASS | ACCEPT | unchanged | E-007 remains blocked | PENDING |
 | factory-007 | dispatch | P-002 | f953344 | c06a577 | PASS | ACCEPT | unchanged | E-007 remains blocked | PENDING |
 | factory-008 | dispatch | C-001 | 00eab52 | db71cfd | PASS | ACCEPT | unchanged | E-007 remains blocked | PENDING |
+| factory-009 | dispatch | C-002 | cf5f944 | pending | PASS | ACCEPT | unchanged | E-007 remains blocked | PENDING |

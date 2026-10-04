@@ -26,3 +26,4 @@ if [ "$fail" -ne 0 ]; then
 fi
 echo "verify:slice PASS"
 run tests/codessa-core.ts
+run tests/packs.ts
