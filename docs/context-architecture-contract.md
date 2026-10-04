@@ -110,11 +110,11 @@ Reads: Postgres identity and policy; optional substrate candidates; no direct pr
 Outputs: a Context whose members are ids, plus a trace step for query, scope, and candidates.
 Failure: missing scope, permission deny, or budget overflow yields a deny step and no snapshot.
 
-Retrieval mode is recorded. This contract does not assert that OpenViking navigates directories recursively. Current product docs describe scoped global vector search; the TrieHI paper describes recursive directory query. The trace field `retrieval_mode` holds whichever the adapter observed.
+Codessa specifies context semantics. It does not specify the retrieval algorithm. `retrieve` must not imply hierarchical traversal. The trace records `retrieval_mode` as observed by the adapter: `scoped_vector`, `hierarchical`, `hybrid`, `exact`, `graph`, or `provider_defined`. L0/L1/L2, if an adapter has them, are a progressive-read representation, not Codessa's canonical layer model. OpenViking docs and the TrieHI paper disagree on recursion; that disagreement stays outside this contract.
 
 ## 7. Snapshot protocol
 
-Seal covers intent id, resource revisions, memory ids, skill versions, claim ids, evidence ids, and policy version. The hash is over that canonical JSON. Execution of a consequential action requires exactly one sealed snapshot id. Changing any cited revision after seal is a contract violation (T08), not an in-place edit.
+Seal covers intent id, resource revisions, memory ids, skill versions, claim ids, evidence ids, and policy version. The hash is a content hash over that JSON. Seal is not an MCGL transition and does not establish canonical state. Who seals is the control-plane resolver, not a provider or substrate. Execution of a consequential action requires exactly one sealed snapshot id. Changing any cited revision after seal is a contract violation (T08), not an in-place edit. MCGL receives a bound evidence/claim set and a decision request, not the substrate tree.
 
 ## 8. Evidence, claim, decision
 
@@ -130,7 +130,7 @@ Not every observation is a memory. Eligibility requires derivation ids and a pol
 
 ## 10. Adapter
 
-`ContextAdapter` methods: `retrieve`, `read`, `project_memory`. None may return epistemic status `CANONICAL`. `establish_canonical` is not a method. Providers do not call the adapter.
+`ContextAdapter` methods: `ingest`, `retrieve`, `resolve`, `read`, `list`, `search`, `remember`, `promote`, `archive`, `trace`. None may return epistemic status `CANONICAL`. `establish_canonical` is not a method. Providers do not call the adapter. OpenViking is one optional implementation, not a doctrinal dependency.
 
 Postgres holds users, projects, agents, skill versions, resource identities, claims, evidence metadata, decisions, snapshot metadata, and transition records. Bodies may live in object storage. If deleting a record would change authoritative state, that record is not solely in the substrate.
 
@@ -161,6 +161,6 @@ Postgres holds users, projects, agents, skill versions, resource identities, cla
 - No M1 gate transition. `AWS-STAGE-M1` remains `PENDING_EXECUTION / BLOCKED`.
 - No declaration that this proposal is a frozen decision. Freeze of this contract would require its own decision record, which this commit is not.
 
-## 13. Remaining map
+## 13. Compatibility
 
-Existing-code classification (already-canonical, candidate, duplicate, obsolete, violation) is not done in this commit. `docs/specs/` currently contains the AWS staging spec only. Kernel and historical docs on `refactor` were not fully read. That map is the next review, not a reason to implement a second memory engine first.
+See `docs/context-architecture-compatibility.md`. The frozen spec is not amended. Snapshot seal is not canonical admission. Retrieval algorithm and L0/L1/L2 remain adapter concerns.
