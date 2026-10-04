@@ -9,7 +9,7 @@ Each item is one bounded change: implement, test, diff, pass or fail. Stop and r
 | Id | Objective | State |
 |---|---|---|
 | E-001 | Execution-contract integrity | Done at `fa5f64d` |
-| E-002 | Model router behind the sealed contract | PRD at `4cc60ec`; not implemented |
+| E-002 | Model router behind the sealed contract | Implemented; see router tests |
 | E-003 | One execution record for the run | Not started |
 | E-004 | Failure-path coverage | Not started |
 | E-005 | Persist execution records | Not started |

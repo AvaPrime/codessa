@@ -4,6 +4,7 @@
  */
 import { createHash } from "crypto";
 import { admitToStore, AdmissionRequest, listAdmissionDecisions } from "../memory/admission";
+import { registerProvider, route } from "./model-router";
 
 export interface RunRequest {
   request_id: string;
@@ -11,6 +12,7 @@ export interface RunRequest {
   context_ids: string[];
   allowed_actions: string[];
   action?: string;
+  provider?: string;
 }
 
 export interface ExecutionContract {
@@ -34,7 +36,7 @@ export interface Observation {
 
 export interface SliceInput {
   request: RunRequest;
-  model: (prompt: string) => Promise<string>;
+  model?: (prompt: string) => Promise<string>;
   observation?: Observation;
   governance?: { decision_id: string; outcome: "PROMOTE" | "REJECT" | "QUARANTINE" | "COMMIT" };
 }
@@ -99,8 +101,33 @@ export async function runSlice(
     };
   }
 
-  const raw = await input.model(input.request.text);
-  const model_output: ModelOutput = { provider: "model", run_id: contract.run_id, raw_result: raw };
+  if (input.model) {
+    registerProvider({
+      name: input.request.provider ?? "mock-a",
+      invoke: async () => input.model!(input.request.text),
+    });
+  }
+  let model_output: ModelOutput;
+  try {
+    model_output = await route({
+      contract,
+      action,
+      prompt: input.request.text,
+      provider: input.request.provider,
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "provider failed";
+    return {
+      run_id: contract.run_id,
+      contract,
+      snapshot_id: contract.context_hash,
+      contract_actions: contract.allowed_actions,
+      committed: false,
+      promoted: false,
+      refused: message.startsWith("unknown provider") ? "unknown provider" : "provider failed",
+    };
+  }
+  const raw = model_output.raw_result;
   let evidence_id: string | undefined;
   let committed = false;
   let promoted = false;
