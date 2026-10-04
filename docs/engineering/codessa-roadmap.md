@@ -14,6 +14,6 @@ The core rule does not change by phase: a model reply is not an observation, an 
 | C-005 | Add a caller surface for one request | Implemented; human acceptance pending |
 | E-007 | Validate that an outcome was legitimately issued | BLOCKED |
 | C-006 | Kernel integration | Implemented; human acceptance pending |
-| C-007 | End-to-end product path | Later |
+| C-007 | End-to-end product path | READY |
 
-No task is READY. E-007 is not authorized by this roadmap. A missing READY task is a successful stop.
+The only READY task is C-007. E-007 is not authorized by this roadmap. A missing READY task is a successful stop.
