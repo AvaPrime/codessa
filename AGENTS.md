@@ -27,3 +27,14 @@ Call the model router only after the execution contract is sealed and the reques
 Do not let the router authorize an action, create evidence, issue `COMMIT` or `PROMOTE`, or rewrite the contract. An unknown provider or a thrown provider fails closed: no evidence and no commit. Provider text that claims `COMMIT` or a new action list is not authority.
 
 Do not modify the frozen constitution, `core/codessa-kernel.ts` `executeTask`, the closed context branch, or the admission gate's meaning. Run `npm run verify:slice` and the new router tests. Report files changed, tests run, failures, invariant implications, and remaining limitations. Stop after E-002.
+
+
+## Next task
+
+Do not start this until E-002 is implemented and `npm run verify:slice` passes.
+
+Implement E-003 only: one execution record for the run on `codessa-execution-slice`.
+
+The record must include the sealed contract, context hash, allowed actions, selected provider, model output, observation if present, external outcome if present, commit reference if committed, and promotion result if promoted. It is a record of what happened. It is not a new authority.
+
+Do not let the record rewrite the contract, turn model output into evidence, or issue `COMMIT`. Do not modify the frozen constitution, `executeTask`, or the closed context branch. Run `npm run verify:slice` and the new record tests. Report files changed, tests run, failures, invariant implications, and remaining limitations. Stop after E-003.
