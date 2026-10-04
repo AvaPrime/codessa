@@ -194,8 +194,17 @@ export async function runSlice(
   let committed = false;
   let promoted = false;
 
-  if (input.observation) {
-    evidence_id = `evidence-${input.observation.observation_id}`;
+  const observation = input.observation;
+  const observationValid = Boolean(
+    observation &&
+      observation.observation_id &&
+      observation.source &&
+      observation.source !== "model" &&
+      observation.source !== "provider" &&
+      observation.content !== model_output.raw_result,
+  );
+  if (observationValid && observation) {
+    evidence_id = `evidence-${observation.observation_id}`;
   }
 
   if (input.governance?.outcome === "COMMIT" && evidence_id && input.governance.decision_id) {
@@ -237,7 +246,7 @@ export async function runSlice(
     allowedActions: contract.allowed_actions,
     selectedProvider: model_output.provider,
     modelOutput: model_output,
-    observation: input.observation,
+    observation: observationValid ? input.observation : undefined,
     externalOutcome: input.governance?.outcome,
     commitReference: committed ? input.governance?.decision_id : undefined,
     promotionResult: promoted ? "promoted" : "not_promoted",

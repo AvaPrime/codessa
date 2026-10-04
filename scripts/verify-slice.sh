@@ -18,6 +18,7 @@ run tests/execution-contract.ts
 run tests/model-router.ts
 run tests/execution-record.ts
 run tests/failure-paths.ts
+run tests/observation-capture.ts
 if [ "$fail" -ne 0 ]; then
   echo "verify:slice FAIL"
   exit 1
